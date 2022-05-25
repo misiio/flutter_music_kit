@@ -21,6 +21,7 @@ class _MyAppState extends State<MyApp> {
   MusicAuthorizationStatus _status = MusicAuthorizationStatus.notDetermined;
   String? _developerToken = '';
   String _userToken = '';
+  String _countryCode = '';
 
   @override
   void initState() {
@@ -44,6 +45,8 @@ class _MyAppState extends State<MyApp> {
     final userToken =
         await _musicKitPlugin.fetchUserToken(developerToken ?? "");
 
+    final countryCode = await _musicKitPlugin.currentCountryCode;
+
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
@@ -54,6 +57,7 @@ class _MyAppState extends State<MyApp> {
       _status = status;
       _developerToken = developerToken;
       _userToken = userToken;
+      _countryCode = countryCode;
     });
   }
 
@@ -70,6 +74,7 @@ class _MyAppState extends State<MyApp> {
               Text('DeveloperToken: $_developerToken\n'),
               Text('UserToken: $_userToken\n'),
               Text('Status: ${_status.toString()}\n'),
+              Text('CountryCode: $_countryCode\n'),
               TextButton(
                   onPressed: () async {
                     final status =

@@ -32,6 +32,10 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
       case .fetchUserToken:
         fetchUserToken(developerToken: call.arguments as! String, result: result)
         break
+        
+      case .currentCountryCode:
+        currentCountryCode(result)
+        break
     }
   }
 }

@@ -14,5 +14,7 @@ extension SwiftMusicKitPlugin {
     //
     case developerToken
     case fetchUserToken
+    //
+    case currentCountryCode
   }
 }

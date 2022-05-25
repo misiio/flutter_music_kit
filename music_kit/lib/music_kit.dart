@@ -27,4 +27,6 @@ class MusicKit {
 
   Future<String> fetchUserToken(String developerToken) =>
       _platform.fetchUserToken(developerToken);
+
+  Future<String> get currentCountryCode => _platform.currentCountryCode;
 }
