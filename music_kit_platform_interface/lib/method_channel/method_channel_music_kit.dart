@@ -36,4 +36,10 @@ class MethodChannelMusicKit extends MusicKitPlatform {
         await methodChannel.invokeMethod('fetchUserToken', developerToken);
     return resp.toString();
   }
+
+  @override
+  Future<String> get currentCountryCode async {
+    final resp = await methodChannel.invokeMethod<String>('currentCountryCode');
+    return resp!;
+  }
 }
