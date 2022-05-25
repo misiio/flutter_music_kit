@@ -17,13 +17,21 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
     }
     
     switch methodKey {
-    case .authorizationStatus:
-      authorizationStatus(result)
-      break
+      case .authorizationStatus:
+        authorizationStatus(result)
+        break
+          
+      case .requestAuthorizationStatus:
+        requestAuthorizationStatus(result)
+        break
         
-    case .requestAuthorizationStatus:
-      requestAuthorizationStatus(result)
-      break
+      case .developerToken:
+        developerToken(result)
+        break
+        
+      case .fetchUserToken:
+        fetchUserToken(developerToken: call.arguments as! String, result: result)
+        break
     }
   }
 }

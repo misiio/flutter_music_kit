@@ -19,6 +19,8 @@ class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
   final _musicKitPlugin = MusicKit();
   MusicAuthorizationStatus _status = MusicAuthorizationStatus.notDetermined;
+  String? _developerToken = '';
+  String _userToken = '';
 
   @override
   void initState() {
@@ -38,6 +40,10 @@ class _MyAppState extends State<MyApp> {
       platformVersion = 'Failed to get platform version.';
     }
 
+    final developerToken = await _musicKitPlugin.developerToken;
+    final userToken =
+        await _musicKitPlugin.fetchUserToken(developerToken ?? "");
+
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
@@ -46,6 +52,8 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _platformVersion = platformVersion;
       _status = status;
+      _developerToken = developerToken;
+      _userToken = userToken;
     });
   }
 
@@ -59,7 +67,8 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             children: [
-              Text('Running on: $_platformVersion\n'),
+              Text('DeveloperToken: $_developerToken\n'),
+              Text('UserToken: $_userToken\n'),
               Text('Status: ${_status.toString()}\n'),
               TextButton(
                   onPressed: () async {

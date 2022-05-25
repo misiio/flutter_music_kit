@@ -11,5 +11,8 @@ extension SwiftMusicKitPlugin {
   enum MethodKeys: String {
     case authorizationStatus
     case requestAuthorizationStatus
+    //
+    case developerToken
+    case fetchUserToken
   }
 }
