@@ -30,4 +30,12 @@ abstract class MusicKitPlatform extends PlatformInterface {
     throw UnimplementedError(
         'get authorizationStatus has not been implemented.');
   }
+
+  Future<String?> get developerToken async {
+    throw UnimplementedError('get developerToken has not been implemented.');
+  }
+
+  Future<String> fetchUserToken(String developerToken) async {
+    throw UnimplementedError('fetchUserToken() has not been implemented.');
+  }
 }
