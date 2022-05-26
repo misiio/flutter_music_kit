@@ -28,8 +28,10 @@ extension SwiftMusicKitPlugin {
         let token = try await MusicUserTokenProvider().userToken(for: developerToken, options: MusicTokenRequestOptions.ignoreCache)
         result(token)
       } catch {
-        result(FlutterError(code: kErrorRequestUserToken, message: error.localizedDescription, details: nil))
+        result(FlutterError(code: kErrorRequestUserToken, message: error.localizedDescription))
       }
     }
   }
 }
+
+// TODO: MusicTokenRequestError

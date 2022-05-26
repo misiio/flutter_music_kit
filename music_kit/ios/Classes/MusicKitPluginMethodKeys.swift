@@ -16,5 +16,17 @@ extension SwiftMusicKitPlugin {
     case fetchUserToken
     //
     case currentCountryCode
+    // player
+    case isPreparedToPlay
+    case playbackTime
+    case musicPlayerState
+    case pause
+    case play
+    case prepareToPlay
+    case restartCurrentEntry
+    case skipToNextEntry
+    case skipToPreviousEntry
+    case stop
+    case setQueue
   }
 }

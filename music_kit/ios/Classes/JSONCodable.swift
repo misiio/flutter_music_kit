@@ -7,8 +7,10 @@
 
 import Foundation
 
+typealias JSONObject = Dictionary<String, Any>
+
 protocol JSONEncodable: Encodable {
-  func jsonObject() -> Dictionary<String, Any>?
+  func jsonObject() -> JSONObject?
 }
 
 extension JSONEncodable {
@@ -24,3 +26,19 @@ extension JSONEncodable {
     }
   }
 }
+
+enum JSONCodableError: Error {
+  case invalidJSON
+}
+
+func decoded<T: Decodable>(json: Any) throws -> T {
+  do {
+    let data = try JSONSerialization.data(withJSONObject: json)
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = .iso8601
+    return try decoder.decode(T.self, from: data)
+  } catch {
+    throw JSONCodableError.invalidJSON
+  }
+}
+
