@@ -14,6 +14,10 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   final currentEntryEventChannel =
       const EventChannel('plugins.misi.app/music_kit/current_entry');
 
+  @visibleForTesting
+  final musicSubcriptionEventChannel =
+      const EventChannel('plugins.misi.app/music_kit/music_subscription');
+
   @override
   Future<MusicAuthorizationStatus> requestAuthorizationStatus() async {
     final resp = await methodChannel.invokeMethod('requestAuthorizationStatus');
@@ -41,5 +45,19 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   Future<String> get currentCountryCode async {
     final resp = await methodChannel.invokeMethod<String>('currentCountryCode');
     return resp!;
+  }
+
+  Stream<MusicSubscription>? _onSubscriptionUpdated;
+
+  @override
+  Stream<MusicSubscription> get onSubscriptionUpdated {
+    _onSubscriptionUpdated ??=
+        musicSubcriptionEventChannel.receiveBroadcastStream().map(
+      (event) {
+        final json = event.cast<String, dynamic>();
+        return MusicSubscription.fromMap(json);
+      },
+    );
+    return _onSubscriptionUpdated!;
   }
 }

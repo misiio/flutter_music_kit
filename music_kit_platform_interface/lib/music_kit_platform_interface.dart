@@ -4,8 +4,10 @@ import 'package:music_kit_platform_interface/method_channel/method_channel_music
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'model/music_authorization_status.dart';
+import 'model/music_subscription.dart';
 
 export 'model/music_authorization_status.dart';
+export 'model/music_subscription.dart';
 
 abstract class MusicKitPlatform extends PlatformInterface {
   MusicKitPlatform() : super(token: _token);
@@ -42,5 +44,10 @@ abstract class MusicKitPlatform extends PlatformInterface {
   Future<String> get currentCountryCode async {
     throw UnimplementedError(
         'get currentCountryCode has not been implemented.');
+  }
+
+  Stream<MusicSubscription> get onSubscriptionUpdated {
+    throw UnimplementedError(
+        'get onSubscriptionUpdated has not been implemented.');
   }
 }
