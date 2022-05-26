@@ -1,7 +1,7 @@
 import 'package:music_kit_platform_interface/music_kit_platform_interface.dart';
 
 export 'package:music_kit_platform_interface/music_kit_platform_interface.dart'
-    show MusicAuthorizationStatus;
+    show MusicAuthorizationStatus, MusicSubscription;
 
 class MusicKit {
   factory MusicKit() {
@@ -29,4 +29,7 @@ class MusicKit {
       _platform.fetchUserToken(developerToken);
 
   Future<String> get currentCountryCode => _platform.currentCountryCode;
+
+  Stream<MusicSubscription> get onSubscriptionUpdated =>
+      _platform.onSubscriptionUpdated;
 }

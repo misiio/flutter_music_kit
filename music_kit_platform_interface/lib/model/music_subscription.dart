@@ -11,9 +11,9 @@ class MusicSubscription {
 
   static MusicSubscription fromMap(Map<String, dynamic> map) {
     return MusicSubscription(
-      canBecomeSubscriber: map["canBecomeSubscriber"],
-      canPlayCatalogContent: map["canPlayCatalogContent"],
-      hasCloudLibraryEnabled: map["hasCloudLibraryEnabled"],
+      canBecomeSubscriber: map["canBecomeSubscriber"] as bool?,
+      canPlayCatalogContent: map["canPlayCatalogContent"] as bool?,
+      hasCloudLibraryEnabled: map["hasCloudLibraryEnabled"] as bool?,
     );
   }
 

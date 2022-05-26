@@ -12,7 +12,7 @@ let kErrorRequestUserToken = "ERR_REQUEST_USER_TOKEN"
 
 extension SwiftMusicKitPlugin {
   func developerToken(_ result: @escaping FlutterResult) {
-    Task.init {
+    Task {
       do {
         let token = try await DefaultMusicTokenProvider().developerToken(options: MusicTokenRequestOptions.ignoreCache)
         result(token)
@@ -23,7 +23,7 @@ extension SwiftMusicKitPlugin {
   }
   
   func fetchUserToken(developerToken: String, result: @escaping FlutterResult) {
-    Task.init {
+    Task {
       do {
         let token = try await MusicUserTokenProvider().userToken(for: developerToken, options: MusicTokenRequestOptions.ignoreCache)
         result(token)

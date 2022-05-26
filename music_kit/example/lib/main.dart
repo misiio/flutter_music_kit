@@ -23,10 +23,27 @@ class _MyAppState extends State<MyApp> {
   String _userToken = '';
   String _countryCode = '';
 
+  MusicSubscription _musicSubsciption = MusicSubscription();
+  late StreamSubscription<MusicSubscription>
+      _musicSubscriptionStreamSubscription;
+
   @override
   void initState() {
     super.initState();
     initPlatformState();
+
+    _musicSubscriptionStreamSubscription =
+        _musicKitPlugin.onSubscriptionUpdated.listen((event) {
+      setState(() {
+        _musicSubsciption = event;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _musicSubscriptionStreamSubscription.cancel();
+    super.dispose();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -75,6 +92,7 @@ class _MyAppState extends State<MyApp> {
               Text('UserToken: $_userToken\n'),
               Text('Status: ${_status.toString()}\n'),
               Text('CountryCode: $_countryCode\n'),
+              Text('Subscription: ${_musicSubsciption.toString()}\n'),
               TextButton(
                   onPressed: () async {
                     final status =

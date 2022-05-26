@@ -8,6 +8,9 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
     let channel = FlutterMethodChannel(name: "plugins.misi.app/music_kit", binaryMessenger: registrar.messenger())
     let instance = SwiftMusicKitPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
+    
+    let musicSubcriptionEventChannel = FlutterEventChannel(name: "plugins.misi.app/music_kit/music_subscription", binaryMessenger: registrar.messenger())
+    musicSubcriptionEventChannel.setStreamHandler(MusicSubscriptionStreamHandler())
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
@@ -37,5 +40,11 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
         currentCountryCode(result)
         break
     }
+  }
+}
+
+extension SwiftMusicKitPlugin {
+  class MusicKitPluginStreamHandler: NSObject {
+    var eventSink: FlutterEventSink? = nil
   }
 }

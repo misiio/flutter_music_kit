@@ -10,7 +10,7 @@ import MusicKit
 
 extension SwiftMusicKitPlugin {
   func currentCountryCode(_ result: @escaping FlutterResult) {
-    Task.init {
+    Task {
       do {
         let code = try await MusicDataRequest.currentCountryCode
         result(code)

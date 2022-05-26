@@ -14,7 +14,7 @@ extension SwiftMusicKitPlugin {
   }
   
   func requestAuthorizationStatus(_ result: @escaping FlutterResult) {
-    Task.init {
+    Task {
       let status = await MusicAuthorization.request()
       result(status.intValue)
     }
