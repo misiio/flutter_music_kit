@@ -60,4 +60,99 @@ class MethodChannelMusicKit extends MusicKitPlatform {
     );
     return _onSubscriptionUpdated!;
   }
+
+  ///
+  @override
+  Future<bool> get isPreparedToPlay async {
+    final resp = await methodChannel.invokeMethod<bool>('isPreparedToPlay');
+    return resp ?? false;
+  }
+
+  @override
+  Future<double> get playbackTime async {
+    final resp = await methodChannel.invokeMethod<double>('playbackTime');
+    return resp ?? 0;
+  }
+
+  @override
+  Future<MusicPlayerState> get musicPlayerState async {
+    final resp = await methodChannel
+        .invokeMapMethod<String, dynamic>('musicPlayerState');
+    return MusicPlayerState.fromMap(resp!);
+  }
+
+  Stream<MusicPlayerState>? _onMusicPlayerStateChanged;
+
+  @override
+  Stream<MusicPlayerState> get onMusicPlayerStateChanged {
+    _onMusicPlayerStateChanged ??=
+        playerStateEventChannel.receiveBroadcastStream().map(
+      (event) {
+        final json = event.cast<String, dynamic>();
+        return MusicPlayerState.fromMap(json);
+      },
+    );
+    return _onMusicPlayerStateChanged!;
+  }
+
+  @override
+  Future<void> beginSeekingBackward() {
+    return methodChannel.invokeMethod('beginSeekingBackward');
+  }
+
+  @override
+  Future<void> beginSeekingForward() {
+    return methodChannel.invokeMethod('beginSeekingForward');
+  }
+
+  @override
+  Future<void> endSeeking() {
+    return methodChannel.invokeMethod('endSeeking');
+  }
+
+  @override
+  Future<void> pause() async {
+    return methodChannel.invokeMethod('pause');
+  }
+
+  @override
+  Future<void> play() async {
+    return methodChannel.invokeMethod('play');
+  }
+
+  @override
+  Future<void> prepareToPlay() async {
+    return methodChannel.invokeMethod('prepareToPlay');
+  }
+
+  @override
+  Future<void> restartCurrentEntry() async {
+    return methodChannel.invokeMethod('restartCurrentEntry');
+  }
+
+  @override
+  Future<void> skipToNextEntry() async {
+    return methodChannel.invokeMethod('skipToNextEntry');
+  }
+
+  @override
+  Future<void> skipToPreviousEntry() async {
+    return methodChannel.invokeMethod('skipToPreviousEntry');
+  }
+
+  @override
+  Future<void> stop() async {
+    return methodChannel.invokeMethod('stop');
+  }
+
+  @override
+  Future<void> setQueue(String kind,
+      {JSONObject? item, List<JSONObject>? items, int? startingAt}) {
+    return methodChannel.invokeMethod('setQueue', {
+      'kind': kind,
+      'item': item,
+      'items': items,
+      'startingAt': startingAt,
+    });
+  }
 }

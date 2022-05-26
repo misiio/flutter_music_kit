@@ -5,9 +5,13 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'model/music_authorization_status.dart';
 import 'model/music_subscription.dart';
+import 'model/music_player.dart';
 
 export 'model/music_authorization_status.dart';
 export 'model/music_subscription.dart';
+export 'model/music_player.dart';
+
+typedef JSONObject = Map<String, dynamic>;
 
 abstract class MusicKitPlatform extends PlatformInterface {
   MusicKitPlatform() : super(token: _token);
@@ -49,5 +53,69 @@ abstract class MusicKitPlatform extends PlatformInterface {
   Stream<MusicSubscription> get onSubscriptionUpdated {
     throw UnimplementedError(
         'get onSubscriptionUpdated has not been implemented.');
+  }
+
+  ///
+  Future<bool> get isPreparedToPlay async {
+    throw UnimplementedError('get isPreparedToPlay has not been implemented.');
+  }
+
+  Future<double> get playbackTime async {
+    throw UnimplementedError('get playbackTime has not been implemented.');
+  }
+
+  Future<MusicPlayerState> get musicPlayerState async {
+    throw UnimplementedError('get musicPlayerState has not been implemented.');
+  }
+
+  Stream<MusicPlayerState> get onMusicPlayerStateChanged {
+    throw UnimplementedError(
+        'get onMusicPlayerStateChanged has not been implemented.');
+  }
+
+  Future<void> beginSeekingBackward() async {
+    throw UnimplementedError(
+        'beginSeekingBackward() has not been implemented.');
+  }
+
+  Future<void> beginSeekingForward() async {
+    throw UnimplementedError('beginSeekingForward() has not been implemented.');
+  }
+
+  Future<void> endSeeking() async {
+    throw UnimplementedError('endSeeking() has not been implemented.');
+  }
+
+  Future<void> pause() async {
+    throw UnimplementedError('pause() has not been implemented.');
+  }
+
+  Future<void> play() async {
+    throw UnimplementedError('play() has not been implemented.');
+  }
+
+  Future<void> prepareToPlay() async {
+    throw UnimplementedError('prepareToPlay() has not been implemented.');
+  }
+
+  Future<void> restartCurrentEntry() async {
+    throw UnimplementedError('restartCurrentEntry() has not been implemented.');
+  }
+
+  Future<void> skipToNextEntry() async {
+    throw UnimplementedError('skipToNextEntry() has not been implemented.');
+  }
+
+  Future<void> skipToPreviousEntry() async {
+    throw UnimplementedError('skipToPreviousEntry() has not been implemented.');
+  }
+
+  Future<void> stop() async {
+    throw UnimplementedError('stop() has not been implemented.');
+  }
+
+  Future<void> setQueue(String kind,
+      {JSONObject? item, List<JSONObject>? items, int? startingAt}) async {
+    throw UnimplementedError('setQueue() has not been implemented.');
   }
 }
