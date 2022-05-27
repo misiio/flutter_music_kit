@@ -11,8 +11,8 @@ class MethodChannelMusicKit extends MusicKitPlatform {
       const EventChannel('plugins.misi.app/music_kit/player_state');
 
   @visibleForTesting
-  final currentEntryEventChannel =
-      const EventChannel('plugins.misi.app/music_kit/current_entry');
+  final playerQueueEventChannel =
+      const EventChannel('plugins.misi.app/music_kit/player_queue');
 
   @visibleForTesting
   final musicSubcriptionEventChannel =
@@ -154,5 +154,19 @@ class MethodChannelMusicKit extends MusicKitPlatform {
       'items': items,
       'startingAt': startingAt,
     });
+  }
+
+  Stream<MusicPlayerQueue>? _onPlayerQueueChanged;
+
+  @override
+  Stream<MusicPlayerQueue> get onPlayerQueueChanged {
+    _onPlayerQueueChanged ??=
+        playerQueueEventChannel.receiveBroadcastStream().map(
+      (event) {
+        final json = Map<String, Object?>.from(event);
+        return MusicPlayerQueue.fromJson(json);
+      },
+    );
+    return _onPlayerQueueChanged!;
   }
 }

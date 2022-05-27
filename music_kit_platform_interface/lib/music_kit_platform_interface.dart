@@ -6,10 +6,12 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'model/music_authorization_status.dart';
 import 'model/music_subscription.dart';
 import 'model/music_player.dart';
+import 'model/music_player_queue.dart';
 
 export 'model/music_authorization_status.dart';
 export 'model/music_subscription.dart';
 export 'model/music_player.dart';
+export 'model/music_player_queue.dart';
 
 typedef JSONObject = Map<String, dynamic>;
 
@@ -117,5 +119,10 @@ abstract class MusicKitPlatform extends PlatformInterface {
   Future<void> setQueue(String kind,
       {JSONObject? item, List<JSONObject>? items, int? startingAt}) async {
     throw UnimplementedError('setQueue() has not been implemented.');
+  }
+
+  Stream<MusicPlayerQueue> get onPlayerQueueChanged {
+    throw UnimplementedError(
+        'get onPlayerQueueChanged has not been implemented.');
   }
 }
