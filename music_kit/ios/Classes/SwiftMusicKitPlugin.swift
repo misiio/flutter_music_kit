@@ -16,6 +16,9 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
     
     let musicPlayerStateEventChannel = FlutterEventChannel(name: "plugins.misi.app/music_kit/player_state", binaryMessenger: registrar.messenger())
     musicPlayerStateEventChannel.setStreamHandler(MusicPlayerStreamHandler(musicPlayer: instance.musicPlayer))
+    
+    let musicPlayerQueueEventChannel = FlutterEventChannel(name: "plugins.misi.app/music_kit/player_queue", binaryMessenger: registrar.messenger())
+    musicPlayerQueueEventChannel.setStreamHandler(MusicPlayerQueueStreamHandler(musicPlayer: instance.musicPlayer))
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {

@@ -1,7 +1,11 @@
 import 'package:music_kit_platform_interface/music_kit_platform_interface.dart';
 
 export 'package:music_kit_platform_interface/music_kit_platform_interface.dart'
-    show MusicAuthorizationStatus, MusicSubscription, MusicPlayerState;
+    show
+        MusicAuthorizationStatus,
+        MusicSubscription,
+        MusicPlayerState,
+        MusicPlayerQueue;
 
 class MusicKit {
   factory MusicKit() {
@@ -71,4 +75,7 @@ class MusicKit {
         items: items,
         startingAt: startingAt,
       );
+
+  Stream<MusicPlayerQueue> get onPlayerQueueChanged =>
+      _platform.onPlayerQueueChanged;
 }

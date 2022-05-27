@@ -29,6 +29,9 @@ class _MyAppState extends State<MyApp> {
   MusicPlayerState? _playerState;
   late StreamSubscription<MusicPlayerState> _playerStateStreamSubscription;
 
+  MusicPlayerQueue? _playerQueue;
+  late StreamSubscription<MusicPlayerQueue> _playerQueueStreamSubscription;
+
   @override
   void initState() {
     super.initState();
@@ -47,11 +50,20 @@ class _MyAppState extends State<MyApp> {
         _playerState = event;
       });
     });
+
+    _playerQueueStreamSubscription =
+        _musicKitPlugin.onPlayerQueueChanged.listen((event) {
+      setState(() {
+        _playerQueue = event;
+      });
+    });
   }
 
   @override
   void dispose() {
     _musicSubscriptionStreamSubscription.cancel();
+    _playerStateStreamSubscription.cancel();
+    _playerQueueStreamSubscription.cancel();
     super.dispose();
   }
 
@@ -94,6 +106,7 @@ class _MyAppState extends State<MyApp> {
               Text('CountryCode: $_countryCode\n'),
               Text('Subscription: ${_musicSubsciption.toString()}\n'),
               Text('PlayerState: ${_playerState?.playbackStatus.toString()}'),
+              Text('PlayerQueue: ${_playerQueue?.currentEntry?.title}'),
               TextButton(
                   onPressed: () async {
                     final status =
