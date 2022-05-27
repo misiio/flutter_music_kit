@@ -12,11 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
   music_kit_platform_interface:
-    path: ../music_kit_platform_interface
-    # git:
-    #     url: git@github.com:misiio/flutter_music_kit.git
-    #     ref: master
-    #     path: music_kit_platform_interface
+    git:
+      url: git@github.com:misiio/flutter_music_kit.git
+      ref: master
+      path: music_kit_platform_interface
 
 dev_dependencies:
   flutter_test:
