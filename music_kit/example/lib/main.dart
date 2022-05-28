@@ -17,7 +17,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _musicKitPlugin = MusicKit();
-  MusicAuthorizationStatus _status = MusicAuthorizationStatus.notDetermined;
+  MusicAuthorizationStatus _status =
+      const MusicAuthorizationStatus.notDetermined();
   String? _developerToken = '';
   String _userToken = '';
   String _countryCode = '';

@@ -128,7 +128,7 @@ packages:
     description:
       path: music_kit_platform_interface
       ref: master
-      resolved-ref: "18b935f92af37289bb3fa95ca03b1a58d5acc6f8"
+      resolved-ref: "9680ad894b125e419cdaee7d468866c05e081983"
       url: "git@github.com:misiio/flutter_music_kit.git"
     source: git
     version: "0.0.1"
