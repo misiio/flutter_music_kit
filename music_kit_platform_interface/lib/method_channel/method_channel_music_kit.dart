@@ -31,8 +31,10 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   }
 
   @override
-  Future<String?> get developerToken =>
-      methodChannel.invokeMethod<String>('developerToken');
+  Future<String> get developerToken async {
+    final resp = await methodChannel.invokeMethod<String>('developerToken');
+    return resp ?? '';
+  }
 
   @override
   Future<String> fetchUserToken(String developerToken) async {

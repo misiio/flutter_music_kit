@@ -41,6 +41,10 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
+dependency_overrides:
+  music_kit_platform_interface:
+    path: ../../music_kit_platform_interface
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

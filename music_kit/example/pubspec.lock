@@ -122,16 +122,14 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.1+2"
   music_kit_platform_interface:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      path: music_kit_platform_interface
-      ref: master
-      resolved-ref: "9680ad894b125e419cdaee7d468866c05e081983"
-      url: "git@github.com:misiio/flutter_music_kit.git"
-    source: git
-    version: "0.0.1"
+      path: "../../music_kit_platform_interface"
+      relative: true
+    source: path
+    version: "0.0.1+2"
   path:
     dependency: transitive
     description:

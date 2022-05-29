@@ -27,7 +27,7 @@ class MusicKit {
   Future<MusicAuthorizationStatus> get authorizationStatus =>
       _platform.authorizationStatus;
 
-  Future<String?> get developerToken => _platform.developerToken;
+  Future<String> get developerToken => _platform.developerToken;
 
   Future<String> fetchUserToken(String developerToken) =>
       _platform.fetchUserToken(developerToken);
