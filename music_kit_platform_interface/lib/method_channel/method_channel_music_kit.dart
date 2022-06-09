@@ -181,4 +181,14 @@ class MethodChannelMusicKit extends MusicKitPlatform {
     );
     return _onPlayerQueueChanged!;
   }
+
+  @override
+  Future<void> setRepeatMode(MusicPlayerRepeatMode mode) {
+    return methodChannel.invokeMethod('setRepeatMode', mode.index);
+  }
+
+  @override
+  Future<void> setShuffleMode(MusicPlayerShuffleMode mode) {
+    return methodChannel.invokeMethod('setShuffleMode', mode.index);
+  }
 }

@@ -29,5 +29,7 @@ extension SwiftMusicKitPlugin {
     case stop
     case setQueue
     case setQueueWithItems
+    case setRepeatMode
+    case setShuffleMode
   }
 }

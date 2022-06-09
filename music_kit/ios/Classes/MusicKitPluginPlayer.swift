@@ -199,6 +199,19 @@ extension MusicPlayer.RepeatMode {
       return 1
     }
   }
+  
+  init(_ intValue: Int) {
+    switch intValue {
+    case 0:
+      self = .all
+    case 1:
+      self = .none
+    case 2:
+      self = .one
+    default:
+      self = .all
+    }
+  }
 }
 
 extension MusicPlayer.ShuffleMode {
@@ -208,6 +221,17 @@ extension MusicPlayer.ShuffleMode {
     case .songs: return 1
     @unknown default:
       return 0
+    }
+  }
+  
+  init(_ intValue: Int) {
+    switch intValue {
+    case 0:
+      self = .off
+    case 1:
+      self = .songs
+    default:
+      self = .off
     }
   }
 }

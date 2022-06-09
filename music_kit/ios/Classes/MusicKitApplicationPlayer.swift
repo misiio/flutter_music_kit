@@ -54,6 +54,16 @@ extension SwiftMusicKitPlugin {
       result(FlutterError(code: kErrorPlay, message: error.localizedDescription))
     }
   }
+  
+  func setRepeatMode(_ mode: Int, result: @escaping FlutterResult) {
+    musicPlayer.state.repeatMode = MusicPlayer.RepeatMode(mode)
+    result(nil)
+  }
+  
+  func setShuffleMode(_ mode: Int, result: @escaping FlutterResult) {
+    musicPlayer.state.shuffleMode = MusicPlayer.ShuffleMode(mode)
+    result(nil)
+  }
 }
 
 fileprivate func parseMusicItem(_ itemType: String, from itemObject: ResourceObject) throws -> MusicItem? {

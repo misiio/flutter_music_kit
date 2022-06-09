@@ -109,6 +109,14 @@ class _MyAppState extends State<MyApp> {
               Text('PlayerQueue: ${_playerQueue?.currentEntry?.title}'),
               TextButton(
                   onPressed: () async {
+                    _musicKitPlugin
+                        .setShuffleMode(MusicPlayerShuffleMode.songs);
+                    _musicKitPlugin.musicPlayerState
+                        .then((value) => debugPrint(value.shuffleMode.name));
+                  },
+                  child: const Text('Shuffle')),
+              TextButton(
+                  onPressed: () async {
                     final status =
                         await _musicKitPlugin.requestAuthorizationStatus();
                     setState(() {
