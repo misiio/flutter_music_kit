@@ -28,5 +28,6 @@ extension SwiftMusicKitPlugin {
     case skipToPreviousEntry
     case stop
     case setQueue
+    case setQueueWithItems
   }
 }

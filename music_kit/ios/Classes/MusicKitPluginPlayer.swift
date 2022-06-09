@@ -86,7 +86,6 @@ extension SwiftMusicKitPlugin {
     result(nil)
   }
   
-  
 }
 
 enum MusicItemType {
@@ -100,6 +99,7 @@ enum MusicItemType {
   case recordLabel
   case song
   case station
+  case track
   
   init?(_ value: String) {
     switch value.lowercased() {
@@ -113,6 +113,7 @@ enum MusicItemType {
     case "record-labels": self = .recordLabel
     case "songs": self = .song
     case "stations": self = .station
+    case "tracks": self = .track
     default: return nil
     }
   }

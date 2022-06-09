@@ -14,6 +14,7 @@ export 'model/music_player.dart';
 export 'model/music_player_queue.dart';
 
 typedef JSONObject = Map<String, dynamic>;
+typedef ResourceObject = JSONObject;
 
 abstract class MusicKitPlatform extends PlatformInterface {
   MusicKitPlatform() : super(token: _token);
@@ -116,9 +117,16 @@ abstract class MusicKitPlatform extends PlatformInterface {
     throw UnimplementedError('stop() has not been implemented.');
   }
 
-  Future<void> setQueue(String kind,
-      {JSONObject? item, List<JSONObject>? items, int? startingAt}) async {
+  Future<void> setQueue(String type, {required ResourceObject item}) async {
     throw UnimplementedError('setQueue() has not been implemented.');
+  }
+
+  Future<void> setQueueWithItems(
+    String type, {
+    required List<ResourceObject> items,
+    int? startingAt,
+  }) async {
+    throw UnimplementedError('setQueueWithItems() has not been implemented.');
   }
 
   Stream<MusicPlayerQueue> get onPlayerQueueChanged {

@@ -8,8 +8,10 @@
 import Foundation
 import MusicKit
 
+typealias ResourceObject = JSONObject
+
 extension SwiftMusicKitPlugin {
-  func setQueue(itemType: String, itemObject: JSONObject, result: @escaping FlutterResult) {
+  func setQueue(itemType: String, itemObject: ResourceObject, result: @escaping FlutterResult) {
     do {
       let playableItem: MusicItem? = try parseMusicItem(itemType, from: itemObject)
       
@@ -21,7 +23,7 @@ extension SwiftMusicKitPlugin {
     }
   }
   
-  func setQueue(itemType: String, itemObjects: Array<JSONObject>, startingAt: Int? = nil, result: @escaping FlutterResult) {
+  func setQueue(itemType: String, itemObjects: Array<ResourceObject>, startingAt: Int? = nil, result: @escaping FlutterResult) {
     do {
       let itemType = MusicItemType(itemType)
 
@@ -34,30 +36,27 @@ extension SwiftMusicKitPlugin {
         let playlists: Array<Playlist> = try decoded(json: itemObjects)
         musicPlayer.setQueue(items: MusicItemCollection(playlists), startingAt: startingAt != nil ? playlists[startingAt!] : nil)
         
-      case .song:
-        let songs: Array<Song> = try decoded(json: itemObjects)
-        musicPlayer.setQueue(items: MusicItemCollection(songs), startingAt: startingAt != nil ? songs[startingAt!] : nil)
+      case .song, .musicVideo, .track:
+        let tracks: Array<Track> = try decoded(json: itemObjects)
+        musicPlayer.setQueue(items: MusicItemCollection(tracks), startingAt: startingAt != nil ? tracks[startingAt!] : nil)
         
       case .station:
         let stations: Array<Station> = try decoded(json: itemObjects)
         musicPlayer.setQueue(items: MusicItemCollection(stations), startingAt: startingAt != nil ? stations[startingAt!] : nil)
         
-      case .musicVideo:
-        let mvs: Array<MusicVideo> = try decoded(json: itemObjects)
-        let tracks = mvs.map { Track.musicVideo($0) }
-        musicPlayer.setQueue(items: MusicItemCollection(tracks), startingAt: startingAt != nil ? tracks[startingAt!] : nil)
-        
       default:
         break
       }
+      
       result(nil)
     } catch {
       //
+      result(FlutterError(code: kErrorPlay, message: error.localizedDescription))
     }
   }
 }
 
-fileprivate func parseMusicItem(_ itemType: String, from itemObject: JSONObject) throws -> MusicItem? {
+fileprivate func parseMusicItem(_ itemType: String, from itemObject: ResourceObject) throws -> MusicItem? {
   let itemType = MusicItemType(itemType)
 
   switch itemType {
@@ -86,11 +85,11 @@ extension ApplicationMusicPlayer {
     queue = [item]
   }
   
-  func setQueue<MusicItemType: PlayableMusicItem>(items: MusicItemCollection<MusicItemType>, startingAt: MusicItemType?)  {
-    queue = ApplicationMusicPlayer.Queue(for: items, startingAt: startingAt)
-  }
-  
   func setQueue<MusicItemType: PlayableMusicItem>(items: MusicItemCollection<MusicItemType>) {
     setQueue(items: items, startingAt: nil)
+  }
+
+  func setQueue<MusicItemType: PlayableMusicItem>(items: MusicItemCollection<MusicItemType>, startingAt: MusicItemType?)  {
+    queue = ApplicationMusicPlayer.Queue(for: items, startingAt: startingAt)
   }
 }

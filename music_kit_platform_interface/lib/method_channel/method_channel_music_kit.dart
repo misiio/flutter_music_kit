@@ -148,11 +148,21 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   }
 
   @override
-  Future<void> setQueue(String kind,
-      {JSONObject? item, List<JSONObject>? items, int? startingAt}) {
+  Future<void> setQueue(String type, {required ResourceObject item}) {
     return methodChannel.invokeMethod('setQueue', {
-      'kind': kind,
+      'type': type,
       'item': item,
+    });
+  }
+
+  @override
+  Future<void> setQueueWithItems(
+    String type, {
+    required List<ResourceObject>? items,
+    int? startingAt,
+  }) {
+    return methodChannel.invokeMethod('setQueueWithItems', {
+      'type': type,
       'items': items,
       'startingAt': startingAt,
     });

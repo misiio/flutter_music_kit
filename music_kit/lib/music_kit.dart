@@ -71,11 +71,19 @@ class MusicKit {
 
   Future<void> stop() => _platform.stop();
 
-  Future<void> setQueue(String kind,
-          {JSONObject? item, List<JSONObject>? items, int? startingAt}) =>
+  Future<void> setQueue(String type, {required ResourceObject item}) =>
       _platform.setQueue(
-        kind,
+        type,
         item: item,
+      );
+
+  Future<void> setQueueWithItems(
+    String type, {
+    required List<ResourceObject> items,
+    int? startingAt,
+  }) =>
+      _platform.setQueueWithItems(
+        type,
         items: items,
         startingAt: startingAt,
       );

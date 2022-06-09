@@ -30,82 +30,65 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
     switch methodKey {
     case .authorizationStatus:
       authorizationStatus(result)
-      break
         
     case .requestAuthorizationStatus:
       requestAuthorizationStatus(result)
-      break
       
     case .developerToken:
       developerToken(result)
-      break
       
     case .fetchUserToken:
       fetchUserToken(developerToken: call.arguments as! String, result: result)
-      break
       
     case .currentCountryCode:
       currentCountryCode(result)
-      break
       
     case .isPreparedToPlay:
       isPreparedToPlay(result)
-      break
       
     case .playbackTime:
       playbackTime(result)
-      break
       
     case .musicPlayerState:
       musicPlayerState(result)
-      break
       
     case .pause:
       pause(result)
-      break
       
     case .play:
       play(result)
-      break
       
     case .prepareToPlay:
       prepareToPlay(result)
-      break
       
     case .restartCurrentEntry:
       restartCurrentEntry(result)
-      break
       
     case .skipToNextEntry:
       skipToNextEntry(result)
-      break
       
     case .skipToPreviousEntry:
       skipToPreviousEntry(result)
-      break
       
     case .stop:
       stop(result)
-      break
       
     case .setQueue:
-      if let arguments = call.arguments as? JSONObject {
-        if let items = arguments["items"] as? Array<JSONObject> {
-          setQueue(
-            itemType: arguments["kind"] as! String,
-            itemObjects: items,
-            startingAt: arguments["startingAt"] as? Int,
-            result: result
-          )
-        } else {
-          setQueue(
-            itemType: arguments["kind"] as! String,
-            itemObject: arguments["item"] as! JSONObject,
-            result: result
-          )
-        }
-      }
-      break
+      let arguments = call.arguments as! JSONObject
+      setQueue(
+        itemType: arguments["type"] as! String,
+        itemObject: arguments["item"] as! ResourceObject,
+        result: result
+      )
+      
+    case .setQueueWithItems:
+      let arguments = call.arguments as! JSONObject
+      setQueue(
+        itemType: arguments["type"] as! String,
+        itemObjects: arguments["items"] as! Array<ResourceObject>,
+        startingAt: arguments["startingAt"] as? Int,
+        result: result
+      )
       
     }
   }
