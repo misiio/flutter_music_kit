@@ -30,6 +30,11 @@ abstract class MusicKitPlatform extends PlatformInterface {
     _instance = instance;
   }
 
+  Future<void> initialize(String developerToken,
+      {String? musicUserToken}) async {
+    throw UnimplementedError('initialize() has not been implemented.');
+  }
+
   Future<MusicAuthorizationStatus> requestAuthorizationStatus() async {
     throw UnimplementedError(
         'requestAuthorizationStatus() has not been implemented.');
@@ -40,12 +45,13 @@ abstract class MusicKitPlatform extends PlatformInterface {
         'get authorizationStatus has not been implemented.');
   }
 
-  Future<String> get developerToken async {
-    throw UnimplementedError('get developerToken has not been implemented.');
+  Future<String> requestDeveloperToken() async {
+    throw UnimplementedError(
+        'get requestDeveloperToken() has not been implemented.');
   }
 
-  Future<String> fetchUserToken(String developerToken) async {
-    throw UnimplementedError('fetchUserToken() has not been implemented.');
+  Future<String> requestUserToken(String developerToken) async {
+    throw UnimplementedError('requestUserToken() has not been implemented.');
   }
 
   Future<String> get currentCountryCode async {

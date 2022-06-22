@@ -12,8 +12,8 @@ extension SwiftMusicKitPlugin {
     case authorizationStatus
     case requestAuthorizationStatus
     //
-    case developerToken
-    case fetchUserToken
+    case requestDeveloperToken
+    case requestUserToken
     //
     case currentCountryCode
     // player

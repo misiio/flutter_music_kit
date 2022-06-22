@@ -34,10 +34,10 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
     case .requestAuthorizationStatus:
       requestAuthorizationStatus(result)
       
-    case .developerToken:
+    case .requestDeveloperToken:
       developerToken(result)
       
-    case .fetchUserToken:
+    case .requestUserToken:
       fetchUserToken(developerToken: call.arguments as! String, result: result)
       
     case .currentCountryCode:

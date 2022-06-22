@@ -19,6 +19,15 @@ class MethodChannelMusicKit extends MusicKitPlatform {
       const EventChannel('plugins.misi.app/music_kit/music_subscription');
 
   @override
+  Future<void> initialize(String developerToken,
+      {String? musicUserToken}) async {
+    return methodChannel.invokeMethod(
+      'initialize',
+      {'developerToken': developerToken, 'musicUserToken': musicUserToken},
+    );
+  }
+
+  @override
   Future<MusicAuthorizationStatus> requestAuthorizationStatus() async {
     try {
       final resp = await methodChannel
@@ -43,15 +52,16 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   }
 
   @override
-  Future<String> get developerToken async {
-    final resp = await methodChannel.invokeMethod<String>('developerToken');
+  Future<String> requestDeveloperToken() async {
+    final resp =
+        await methodChannel.invokeMethod<String>('requestDeveloperToken');
     return resp ?? '';
   }
 
   @override
-  Future<String> fetchUserToken(String developerToken) async {
+  Future<String> requestUserToken(String developerToken) async {
     final resp =
-        await methodChannel.invokeMethod('fetchUserToken', developerToken);
+        await methodChannel.invokeMethod('requestUserToken', developerToken);
     return resp.toString();
   }
 

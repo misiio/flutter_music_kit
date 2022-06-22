@@ -1,11 +1,16 @@
 package app.misi.music_kit
 
 import android.content.Intent
+import android.util.Log
+import app.misi.music_kit.util.Constant.LOG_TAG
 import com.apple.android.sdk.authentication.AuthenticationManager
-import io.flutter.plugin.common.MethodChannel
+import com.apple.android.sdk.authentication.TokenError
 import io.flutter.plugin.common.PluginRegistry
 
-class AuthActivityResultHandler(private val result: MethodChannel.Result, private val authenticationManager: AuthenticationManager, private val completionHandler: ((String) -> Unit)?): PluginRegistry.ActivityResultListener {
+class AuthActivityResultHandler(
+  private val authenticationManager: AuthenticationManager,
+  private val completionHandler: ((String?, TokenError?) -> Unit)?
+) : PluginRegistry.ActivityResultListener {
   companion object {
     const val ERR_REQUEST_USER_TOKEN = "ERR_REQUEST_USER_TOKEN"
   }
@@ -14,11 +19,11 @@ class AuthActivityResultHandler(private val result: MethodChannel.Result, privat
     val tokenResult = authenticationManager.handleTokenResult(data)
     if (tokenResult.isError) {
       val error = tokenResult.error
-      result.error(ERR_REQUEST_USER_TOKEN, error.toString(), null)
+      completionHandler?.let { it(null, error) }
     } else {
       val musicUserToken = tokenResult.musicUserToken
-      completionHandler?.let { it(musicUserToken) }
-      result.success(musicUserToken)
+      Log.d(LOG_TAG, "Authentication.onActivityResult() musicUserToken: ${musicUserToken.length}")
+      completionHandler?.let { it(musicUserToken, null) }
     }
     return true
   }

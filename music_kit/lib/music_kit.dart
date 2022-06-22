@@ -25,16 +25,19 @@ class MusicKit {
     return MusicKitPlatform.instance;
   }
 
+  Future<void> initialize(String developerToken, {String? musicUserToken}) =>
+      _platform.initialize(developerToken, musicUserToken: musicUserToken);
+
   Future<MusicAuthorizationStatus> requestAuthorizationStatus() =>
       _platform.requestAuthorizationStatus();
 
   Future<MusicAuthorizationStatus> get authorizationStatus =>
       _platform.authorizationStatus;
 
-  Future<String> get developerToken => _platform.developerToken;
+  Future<String> requestDeveloperToken() => _platform.requestDeveloperToken();
 
-  Future<String> fetchUserToken(String developerToken) =>
-      _platform.fetchUserToken(developerToken);
+  Future<String> requestUserToken(String developerToken) =>
+      _platform.requestUserToken(developerToken);
 
   Future<String> get currentCountryCode => _platform.currentCountryCode;
 
