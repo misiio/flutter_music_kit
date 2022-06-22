@@ -35,18 +35,18 @@ class MusicPlayerState {
 }
 
 enum MusicPlayerPlaybackStatus {
-  interrupted,
-  paused,
+  stopped,
   playing,
+  paused,
+  interrupted,
   seekingBackward,
   seekingForward,
-  stopped,
 }
 
 enum MusicPlayerRepeatMode {
-  all,
   none,
   one,
+  all,
 }
 
 enum MusicPlayerShuffleMode {

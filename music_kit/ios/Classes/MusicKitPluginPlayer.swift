@@ -177,14 +177,15 @@ extension MusicPlayer.State: JSONEncodable {
 extension MusicPlayer.PlaybackStatus {
   public var intValue: Int {
     switch self {
-    case .interrupted: return 0
-    case .paused: return 1
-    case .playing: return 2
-    case .seekingBackward: return 3
-    case .seekingForward: return 4
-    case .stopped: return 5
+    case .stopped: return 0
+    case .playing: return 1
+    case .paused: return 2
+    case .interrupted: return 3
+    case .seekingBackward: return 4
+    case .seekingForward: return 5
+    
     @unknown default:
-      return 5
+      return 0
     }
   }
 }
@@ -192,24 +193,24 @@ extension MusicPlayer.PlaybackStatus {
 extension MusicPlayer.RepeatMode {
   public var intValue: Int {
     switch self {
-    case .all: return 0
-    case .none: return 1
-    case .one: return 2
+    case .none: return 0
+    case .one: return 1
+    case .all: return 2
     @unknown default:
-      return 1
+      return 0
     }
   }
   
   init(_ intValue: Int) {
     switch intValue {
     case 0:
-      self = .all
-    case 1:
       self = .none
-    case 2:
+    case 1:
       self = .one
-    default:
+    case 2:
       self = .all
+    default:
+      self = .none
     }
   }
 }
