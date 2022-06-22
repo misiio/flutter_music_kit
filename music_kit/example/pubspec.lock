@@ -122,14 +122,14 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1+2"
+    version: "1.0.0"
   music_kit_platform_interface:
     dependency: "direct overridden"
     description:
       path: "../../music_kit_platform_interface"
       relative: true
     source: path
-    version: "0.0.1+2"
+    version: "1.0.0"
   path:
     dependency: transitive
     description:

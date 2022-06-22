@@ -1,6 +1,6 @@
 name: music_kit
 description: A new Flutter plugin project.
-version: 0.0.1+4
+version: 1.0.0
 homepage:
 publish_to: none
 
@@ -13,8 +13,8 @@ dependencies:
     sdk: flutter
   music_kit_platform_interface:
     git:
-      url: git@github.com:misiio/flutter_music_kit.git
-      ref: master
+      url: https://github.com/misiio/flutter_music_kit
+      ref: v1.0.0
       path: music_kit_platform_interface
 
 dev_dependencies:
@@ -22,9 +22,6 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
 
-dependency_overrides:
-  music_kit_platform_interface:
-    path: ../music_kit_platform_interface
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
