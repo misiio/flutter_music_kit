@@ -20,14 +20,26 @@ class MethodChannelMusicKit extends MusicKitPlatform {
 
   @override
   Future<MusicAuthorizationStatus> requestAuthorizationStatus() async {
-    final resp = await methodChannel.invokeMethod('requestAuthorizationStatus');
-    return MusicAuthorizationStatus.fromRawValue(resp.toInt());
+    try {
+      final resp = await methodChannel
+          .invokeMapMethod<String, dynamic>('requestAuthorizationStatus');
+      return MusicAuthorizationStatus.fromRawValue(
+        resp!['status'].toInt(),
+        musicUserToken: resp['musicUserToken']?.toString(),
+      );
+    } catch (_) {
+      return const MusicAuthorizationStatus.notDetermined();
+    }
   }
 
   @override
   Future<MusicAuthorizationStatus> get authorizationStatus async {
-    final resp = await methodChannel.invokeMethod('authorizationStatus');
-    return MusicAuthorizationStatus.fromRawValue(resp.toInt());
+    final resp = await methodChannel
+        .invokeMapMethod<String, dynamic>('authorizationStatus');
+    return MusicAuthorizationStatus.fromRawValue(
+      resp!['status'].toInt(),
+      musicUserToken: resp['musicUserToken']?.toString(),
+    );
   }
 
   @override

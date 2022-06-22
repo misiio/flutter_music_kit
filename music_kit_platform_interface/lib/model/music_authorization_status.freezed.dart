@@ -19,7 +19,7 @@ mixin _$MusicAuthorizationStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(String? musicUserToken) authorized,
     required TResult Function() denied,
     required TResult Function() notDetermined,
     required TResult Function() restricted,
@@ -28,7 +28,7 @@ mixin _$MusicAuthorizationStatus {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
@@ -37,7 +37,7 @@ mixin _$MusicAuthorizationStatus {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
@@ -132,7 +132,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(String? musicUserToken) authorized,
     required TResult Function() denied,
     required TResult Function() notDetermined,
     required TResult Function() restricted,
@@ -144,7 +144,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
@@ -156,7 +156,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
@@ -219,6 +219,7 @@ abstract class _$$_AuthorizedCopyWith<$Res> {
   factory _$$_AuthorizedCopyWith(
           _$_Authorized value, $Res Function(_$_Authorized) then) =
       __$$_AuthorizedCopyWithImpl<$Res>;
+  $Res call({String? musicUserToken});
 }
 
 /// @nodoc
@@ -231,63 +232,87 @@ class __$$_AuthorizedCopyWithImpl<$Res>
 
   @override
   _$_Authorized get _value => super._value as _$_Authorized;
+
+  @override
+  $Res call({
+    Object? musicUserToken = freezed,
+  }) {
+    return _then(_$_Authorized(
+      musicUserToken == freezed
+          ? _value.musicUserToken
+          : musicUserToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Authorized extends _Authorized {
-  const _$_Authorized() : super._();
+  const _$_Authorized(this.musicUserToken) : super._();
+
+  @override
+  final String? musicUserToken;
 
   @override
   String toString() {
-    return 'MusicAuthorizationStatus.authorized()';
+    return 'MusicAuthorizationStatus.authorized(musicUserToken: $musicUserToken)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Authorized);
+        (other.runtimeType == runtimeType &&
+            other is _$_Authorized &&
+            const DeepCollectionEquality()
+                .equals(other.musicUserToken, musicUserToken));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(musicUserToken));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_AuthorizedCopyWith<_$_Authorized> get copyWith =>
+      __$$_AuthorizedCopyWithImpl<_$_Authorized>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(String? musicUserToken) authorized,
     required TResult Function() denied,
     required TResult Function() notDetermined,
     required TResult Function() restricted,
   }) {
-    return authorized();
+    return authorized(musicUserToken);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
   }) {
-    return authorized?.call();
+    return authorized?.call(musicUserToken);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
     required TResult orElse(),
   }) {
     if (authorized != null) {
-      return authorized();
+      return authorized(musicUserToken);
     }
     return orElse();
   }
@@ -334,8 +359,13 @@ class _$_Authorized extends _Authorized {
 }
 
 abstract class _Authorized extends MusicAuthorizationStatus {
-  const factory _Authorized() = _$_Authorized;
+  const factory _Authorized(final String? musicUserToken) = _$_Authorized;
   const _Authorized._() : super._();
+
+  String? get musicUserToken => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_AuthorizedCopyWith<_$_Authorized> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -378,7 +408,7 @@ class _$_Denied extends _Denied {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(String? musicUserToken) authorized,
     required TResult Function() denied,
     required TResult Function() notDetermined,
     required TResult Function() restricted,
@@ -390,7 +420,7 @@ class _$_Denied extends _Denied {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
@@ -402,7 +432,7 @@ class _$_Denied extends _Denied {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
@@ -502,7 +532,7 @@ class _$_NotDetermined extends _NotDetermined {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(String? musicUserToken) authorized,
     required TResult Function() denied,
     required TResult Function() notDetermined,
     required TResult Function() restricted,
@@ -514,7 +544,7 @@ class _$_NotDetermined extends _NotDetermined {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
@@ -526,7 +556,7 @@ class _$_NotDetermined extends _NotDetermined {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
@@ -626,7 +656,7 @@ class _$_Restricted extends _Restricted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(String? musicUserToken) authorized,
     required TResult Function() denied,
     required TResult Function() notDetermined,
     required TResult Function() restricted,
@@ -638,7 +668,7 @@ class _$_Restricted extends _Restricted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,
@@ -650,7 +680,7 @@ class _$_Restricted extends _Restricted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(String? musicUserToken)? authorized,
     TResult Function()? denied,
     TResult Function()? notDetermined,
     TResult Function()? restricted,

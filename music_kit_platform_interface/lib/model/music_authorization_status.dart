@@ -6,15 +6,17 @@ part 'music_authorization_status.freezed.dart';
 class MusicAuthorizationStatus with _$MusicAuthorizationStatus {
   const MusicAuthorizationStatus._();
   const factory MusicAuthorizationStatus.initial() = _Initial;
-  const factory MusicAuthorizationStatus.authorized() = _Authorized;
+  const factory MusicAuthorizationStatus.authorized(String? musicUserToken) =
+      _Authorized;
   const factory MusicAuthorizationStatus.denied() = _Denied;
   const factory MusicAuthorizationStatus.notDetermined() = _NotDetermined;
   const factory MusicAuthorizationStatus.restricted() = _Restricted;
 
-  static MusicAuthorizationStatus fromRawValue(int rawValue) {
+  static MusicAuthorizationStatus fromRawValue(int rawValue,
+      {String? musicUserToken}) {
     switch (rawValue) {
       case 0:
-        return const MusicAuthorizationStatus.authorized();
+        return MusicAuthorizationStatus.authorized(musicUserToken);
       case 1:
         return const MusicAuthorizationStatus.denied();
       case 2:

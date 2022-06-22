@@ -10,13 +10,17 @@ import MusicKit
 
 extension SwiftMusicKitPlugin {
   func authorizationStatus(_ result: @escaping FlutterResult) {
-    result(MusicAuthorization.currentStatus.intValue)
+    result([
+      "status": MusicAuthorization.currentStatus.intValue
+    ])
   }
   
   func requestAuthorizationStatus(_ result: @escaping FlutterResult) {
     Task {
       let status = await MusicAuthorization.request()
-      result(status.intValue)
+      result([
+        "status": status.intValue
+      ])
     }
   }
 }
