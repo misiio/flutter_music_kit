@@ -17,9 +17,12 @@ extension SwiftMusicKitPlugin {
       
       if let item = playableItem as? PlayableMusicItem {
         musicPlayer.setQueue(item: item)
+        result(nil)
+      } else {
+        result(FlutterError(code: kErrorPlay, message: "The item is not playable."))
       }
-      result(nil)
     } catch {
+      result(FlutterError(code: kErrorPlay, message: error.localizedDescription))
     }
   }
   
