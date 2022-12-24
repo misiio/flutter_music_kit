@@ -376,6 +376,13 @@ class ChannelHandler(
 
   @Keep
   @Suppress("unused", "UNUSED_PARAMETER")
+  fun repeatMode(call: MethodCall, result: MethodChannel.Result) {
+    val repeatMode: Int = playerController?.repeatMode ?: PlaybackRepeatMode.REPEAT_MODE_OFF
+    result.success(repeatMode)
+  }
+
+  @Keep
+  @Suppress("unused", "UNUSED_PARAMETER")
   fun setRepeatMode(call: MethodCall, result: MethodChannel.Result) {
     if (playerController?.canSetRepeatMode() == true) {
       val mode = call.arguments as Int
@@ -386,11 +393,43 @@ class ChannelHandler(
 
   @Keep
   @Suppress("unused", "UNUSED_PARAMETER")
+  fun toggleRepeatMode(call: MethodCall, result: MethodChannel.Result) {
+    var repeatMode: Int = playerController?.repeatMode ?: PlaybackRepeatMode.REPEAT_MODE_OFF
+    if (playerController?.canSetRepeatMode() == true) {
+      repeatMode = (repeatMode + 2) % 3
+      playerController?.repeatMode = repeatMode
+    }
+    result.success(repeatMode)
+  }
+
+  @Keep
+  @Suppress("unused", "UNUSED_PARAMETER")
+  fun shuffleMode(call: MethodCall, result: MethodChannel.Result) {
+    val shuffleMode: Int = playerController?.shuffleMode ?: PlaybackShuffleMode.SHUFFLE_MODE_OFF
+    result.success(shuffleMode)
+  }
+
+  @Keep
+  @Suppress("unused", "UNUSED_PARAMETER")
   fun setShuffleMode(call: MethodCall, result: MethodChannel.Result) {
     if (playerController?.canSetShuffleMode() == true) {
       val mode = call.arguments as Int
       playerController?.shuffleMode = mode
     }
     result.success(null)
+  }
+
+  @Keep
+  @Suppress("unused", "UNUSED_PARAMETER")
+  fun toggleShuffleMode(call: MethodCall, result: MethodChannel.Result) {
+    var shuffleMode: Int = playerController?.shuffleMode ?: PlaybackShuffleMode.SHUFFLE_MODE_OFF
+    if (playerController?.canSetShuffleMode() == true) {
+      shuffleMode = when (shuffleMode) {
+        PlaybackShuffleMode.SHUFFLE_MODE_OFF -> PlaybackShuffleMode.SHUFFLE_MODE_SONGS
+        else -> PlaybackShuffleMode.SHUFFLE_MODE_OFF
+      }
+      playerController?.shuffleMode = shuffleMode
+    }
+    result.success(shuffleMode)
   }
 }
