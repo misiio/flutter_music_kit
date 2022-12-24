@@ -5,3 +5,7 @@
 ## 1.0.1
 
 * feat: upgrade dependencies
+
+## 1.1.0
+
+* feat: togging repeat/shuffle mode
