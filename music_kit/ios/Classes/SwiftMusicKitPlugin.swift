@@ -90,11 +90,23 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
         result: result
       )
       
+    case .repeatMode:
+      repeatMode(result)
+      
     case .setRepeatMode:
       setRepeatMode(call.arguments as! Int, result: result)
       
+    case .toggleRepeatMode:
+      toggleRepeatMode(result)
+      
+    case .shuffleMode:
+      shuffleMode(result)
+      
     case .setShuffleMode:
       setShuffleMode(call.arguments as! Int, result: result)
+      
+    case .toggleShuffleMode:
+      toggleShuffleMode(result)
     }
   }
 }

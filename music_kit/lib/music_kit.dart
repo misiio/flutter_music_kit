@@ -94,9 +94,19 @@ class MusicKit {
   Stream<MusicPlayerQueue> get onPlayerQueueChanged =>
       _platform.onPlayerQueueChanged;
 
+  Future<MusicPlayerRepeatMode> get repeatMode => _platform.repeatMode;
+
   Future<void> setRepeatMode(MusicPlayerRepeatMode mode) =>
       _platform.setRepeatMode(mode);
 
+  Future<MusicPlayerRepeatMode> toggleRepeatMode() =>
+      _platform.toggleRepeatMode();
+
+  Future<MusicPlayerShuffleMode> get shuffleMode => _platform.shuffleMode;
+
   Future<void> setShuffleMode(MusicPlayerShuffleMode mode) =>
       _platform.setShuffleMode(mode);
+
+  Future<MusicPlayerShuffleMode> toggleShuffleMode() =>
+      _platform.toggleShuffleMode();
 }

@@ -58,14 +58,34 @@ extension SwiftMusicKitPlugin {
     }
   }
   
+  func repeatMode(_ result: @escaping FlutterResult) {
+    result((musicPlayer.state.repeatMode ?? MusicPlayer.RepeatMode.none).intValue)
+  }
+  
   func setRepeatMode(_ mode: Int, result: @escaping FlutterResult) {
     musicPlayer.state.repeatMode = MusicPlayer.RepeatMode(mode)
     result(nil)
   }
   
+  func toggleRepeatMode(_ result: @escaping FlutterResult) {
+    let nextRepeatMode = (musicPlayer.repeatMode.intValue + 2) % 3
+    musicPlayer.state.repeatMode = MusicPlayer.RepeatMode(nextRepeatMode)
+    result(nextRepeatMode)
+  }
+  
+  func shuffleMode(_ result: @escaping FlutterResult) {
+    result((musicPlayer.state.shuffleMode ?? MusicPlayer.ShuffleMode.off).intValue)
+  }
+  
   func setShuffleMode(_ mode: Int, result: @escaping FlutterResult) {
     musicPlayer.state.shuffleMode = MusicPlayer.ShuffleMode(mode)
     result(nil)
+  }
+  
+  func toggleShuffleMode(_ result: @escaping FlutterResult) {
+    let nextShuffleMode = musicPlayer.shuffleMode == MusicPlayer.ShuffleMode.off ? MusicPlayer.ShuffleMode.songs : MusicPlayer.ShuffleMode.off
+    musicPlayer.state.shuffleMode = nextShuffleMode
+    result(nextShuffleMode.intValue)
   }
 }
 
@@ -104,5 +124,15 @@ extension ApplicationMusicPlayer {
 
   func setQueue<MusicItemType: PlayableMusicItem>(items: MusicItemCollection<MusicItemType>, startingAt: MusicItemType?)  {
     queue = ApplicationMusicPlayer.Queue(for: items, startingAt: startingAt)
+  }
+}
+
+extension MusicPlayer {
+  var repeatMode: RepeatMode {
+    return state.repeatMode ?? RepeatMode.none
+  }
+  
+  var shuffleMode: ShuffleMode {
+    return state.shuffleMode ?? ShuffleMode.off
   }
 }
