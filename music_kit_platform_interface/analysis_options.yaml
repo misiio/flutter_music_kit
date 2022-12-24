@@ -1,5 +1,12 @@
 include: package:flutter_lints/flutter.yaml
 
+linter:
+  rules:
+    avoid_void_async: true
+
 analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
   errors:
     invalid_annotation_target: ignore
