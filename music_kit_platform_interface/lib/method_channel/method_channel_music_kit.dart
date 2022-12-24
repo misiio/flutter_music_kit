@@ -205,12 +205,36 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   }
 
   @override
+  Future<MusicPlayerRepeatMode> get repeatMode async {
+    final resp = await methodChannel.invokeMethod<int>('repeatMode');
+    return MusicPlayerRepeatMode.values[resp ?? 0];
+  }
+
+  @override
   Future<void> setRepeatMode(MusicPlayerRepeatMode mode) {
     return methodChannel.invokeMethod('setRepeatMode', mode.index);
   }
 
   @override
+  Future<MusicPlayerRepeatMode> toggleRepeatMode() async {
+    final resp = await methodChannel.invokeMethod<int>('toggleRepeatMode');
+    return MusicPlayerRepeatMode.values[resp ?? 0];
+  }
+
+  @override
+  Future<MusicPlayerShuffleMode> get shuffleMode async {
+    final resp = await methodChannel.invokeMethod<int>('shuffleMode');
+    return MusicPlayerShuffleMode.values[resp ?? 0];
+  }
+
+  @override
   Future<void> setShuffleMode(MusicPlayerShuffleMode mode) {
     return methodChannel.invokeMethod('setShuffleMode', mode.index);
+  }
+
+  @override
+  Future<MusicPlayerShuffleMode> toggleShuffleMode() async {
+    final resp = await methodChannel.invokeMethod<int>('toggleShuffleMode');
+    return MusicPlayerShuffleMode.values[resp ?? 0];
   }
 }

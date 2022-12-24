@@ -140,11 +140,27 @@ abstract class MusicKitPlatform extends PlatformInterface {
         'get onPlayerQueueChanged has not been implemented.');
   }
 
+  Future<MusicPlayerRepeatMode> get repeatMode async {
+    throw UnimplementedError('get repeatMode has not been implemented.');
+  }
+
   Future<void> setRepeatMode(MusicPlayerRepeatMode mode) async {
     throw UnimplementedError('setRepeatMode() has not been implemented.');
   }
 
+  Future<MusicPlayerRepeatMode> toggleRepeatMode() async {
+    throw UnimplementedError('toggleRepeatMode() has not been implemented.');
+  }
+
+  Future<MusicPlayerShuffleMode> get shuffleMode async {
+    throw UnimplementedError('get shuffleMode has not been implemented.');
+  }
+
   Future<void> setShuffleMode(MusicPlayerShuffleMode mode) async {
     throw UnimplementedError('setShuffleMode() has not been implemented.');
+  }
+
+  Future<MusicPlayerShuffleMode> toggleShuffleMode() async {
+    throw UnimplementedError('toggleShuffleMode() has not been implemented.');
   }
 }
