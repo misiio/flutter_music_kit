@@ -49,6 +49,8 @@ class MusicKit {
 
   Future<double> get playbackTime => _platform.playbackTime;
 
+  Future<void> setPlaybackTime(double time) => _platform.setPlaybackTime(time);
+
   Future<MusicPlayerState> get musicPlayerState => _platform.musicPlayerState;
 
   Stream<MusicPlayerState> get onMusicPlayerStateChanged =>
