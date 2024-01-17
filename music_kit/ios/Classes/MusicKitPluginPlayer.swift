@@ -22,6 +22,11 @@ extension SwiftMusicKitPlugin {
   func playbackTime(_ result: @escaping FlutterResult) {
     result(musicPlayer.playbackTime)
   }
+
+  func setPlaybackTime(_ time: Double, result: @escaping FlutterResult) {
+    musicPlayer.playbackTime = TimeInterval(time)
+    result(nil)
+  }
   
   func musicPlayerState(_ result: @escaping FlutterResult) {
     result(musicPlayer.state.jsonObject())

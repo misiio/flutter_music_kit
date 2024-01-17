@@ -19,6 +19,7 @@ extension SwiftMusicKitPlugin {
     // player
     case isPreparedToPlay
     case playbackTime
+    case setPlaybackTime
     case musicPlayerState
     case pause
     case play

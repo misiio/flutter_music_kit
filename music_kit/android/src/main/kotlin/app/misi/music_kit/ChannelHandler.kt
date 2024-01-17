@@ -270,6 +270,12 @@ class ChannelHandler(
 
   @Keep
   @Suppress("unused", "UNUSED_PARAMETER")
+  fun setPlaybackTime(call: MethodCall, result: MethodChannel.Result) {
+    result.notImplemented()
+  }
+
+  @Keep
+  @Suppress("unused", "UNUSED_PARAMETER")
   fun musicPlayerState(call: MethodCall, result: MethodChannel.Result) {
     val state = mapOf<String, Any>(
       "playbackStatus" to (playerController?.playbackState ?: PlaybackState.STOPPED),
