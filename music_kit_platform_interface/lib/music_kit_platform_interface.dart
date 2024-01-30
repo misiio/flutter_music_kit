@@ -73,6 +73,10 @@ abstract class MusicKitPlatform extends PlatformInterface {
     throw UnimplementedError('get playbackTime has not been implemented.');
   }
 
+  Future<void> setPlaybackTime(double time) async {
+    throw UnimplementedError('setPlaybackTime() has not been implemented.');
+  }
+
   Future<MusicPlayerState> get musicPlayerState async {
     throw UnimplementedError('get musicPlayerState has not been implemented.');
   }

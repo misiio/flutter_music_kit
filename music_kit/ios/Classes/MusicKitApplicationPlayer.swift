@@ -115,7 +115,10 @@ fileprivate func parseMusicItem(_ itemType: String, from itemObject: ResourceObj
 
 extension ApplicationMusicPlayer {
   func setQueue(item: PlayableMusicItem) {
-    queue = [item]
+    // startTime not working
+    // https://developer.apple.com/forums/thread/714807
+    let entry = MusicPlayer.Queue.Entry(item)
+    queue = ApplicationMusicPlayer.Queue([entry])
   }
   
   func setQueue<MusicItemType: PlayableMusicItem>(items: MusicItemCollection<MusicItemType>) {
