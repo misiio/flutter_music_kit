@@ -47,8 +47,7 @@ class ActivityDispatcher(
       AuthActivityResultHandler(authenticationManager, completionHandler)
 
     val intent = authenticationManager.createIntentBuilder(developerToken)
-      .setHideStartScreen(false)
-      .setStartScreenMessage("To play the full song, connect Misica to Apple Music.") //todo:localize
+      .setHideStartScreen(true)
       .build()
 
     activity?.startActivityForResult(intent, REQUEST_CODE_APPLE_MUSIC_AUTH)
