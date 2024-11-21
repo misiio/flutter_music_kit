@@ -4,4 +4,8 @@
     <activity
         android:name="com.apple.android.sdk.authentication.SDKUriHandlerActivity"
         android:exported="true" />
+
+    <queries>
+        <package android:name="com.apple.android.music" />
+    </queries>
 </manifest>
