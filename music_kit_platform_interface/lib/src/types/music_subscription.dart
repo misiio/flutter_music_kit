@@ -1,5 +1,5 @@
 class MusicSubscription {
-  MusicSubscription({
+  const MusicSubscription({
     this.canBecomeSubscriber,
     this.canPlayCatalogContent,
     this.hasCloudLibraryEnabled,

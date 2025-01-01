@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:music_kit_platform_interface/music_kit_platform_interface.dart';
+
+import '../../music_kit_platform_interface.dart';
 
 class MethodChannelMusicKit extends MusicKitPlatform {
   @visibleForTesting
@@ -28,16 +29,18 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   }
 
   @override
-  Future<MusicAuthorizationStatus> requestAuthorizationStatus() async {
+  Future<MusicAuthorizationStatus> requestAuthorizationStatus(
+      {String? startScreenMessage}) async {
     try {
-      final resp = await methodChannel
-          .invokeMapMethod<String, dynamic>('requestAuthorizationStatus');
-      return MusicAuthorizationStatus.fromRawValue(
+      final resp = await methodChannel.invokeMapMethod<String, dynamic>(
+          'requestAuthorizationStatus',
+          {'startScreenMessage': startScreenMessage});
+      return _authorizationStatusfromRawValue(
         resp!['status'].toInt(),
         musicUserToken: resp['musicUserToken']?.toString(),
       );
     } catch (_) {
-      return const MusicAuthorizationStatus.notDetermined();
+      return MusicAuthorizationStatusNotDetermined();
     }
   }
 
@@ -45,7 +48,7 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   Future<MusicAuthorizationStatus> get authorizationStatus async {
     final resp = await methodChannel
         .invokeMapMethod<String, dynamic>('authorizationStatus');
-    return MusicAuthorizationStatus.fromRawValue(
+    return _authorizationStatusfromRawValue(
       resp!['status'].toInt(),
       musicUserToken: resp['musicUserToken']?.toString(),
     );
@@ -59,9 +62,12 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   }
 
   @override
-  Future<String> requestUserToken(String developerToken) async {
-    final resp =
-        await methodChannel.invokeMethod('requestUserToken', developerToken);
+  Future<String> requestUserToken(String developerToken,
+      {String? startScreenMessage}) async {
+    final resp = await methodChannel.invokeMethod('requestUserToken', {
+      "developerToken": developerToken,
+      "startScreenMessage": startScreenMessage
+    });
     return resp.toString();
   }
 
@@ -183,7 +189,7 @@ class MethodChannelMusicKit extends MusicKitPlatform {
     required List<ResourceObject>? items,
     int? startingAt,
   }) {
-    return methodChannel.invokeMethod('setQueueWithItems', {
+    return methodChannel.invokeMethod('setQueueWithItems', <String, dynamic>{
       'type': type,
       'items': items,
       'startingAt': startingAt,
@@ -236,5 +242,21 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   Future<MusicPlayerShuffleMode> toggleShuffleMode() async {
     final resp = await methodChannel.invokeMethod<int>('toggleShuffleMode');
     return MusicPlayerShuffleMode.values[resp ?? 0];
+  }
+}
+
+MusicAuthorizationStatus _authorizationStatusfromRawValue(int rawValue,
+    {String? musicUserToken}) {
+  switch (rawValue) {
+    case 0:
+      return MusicAuthorizationStatusAuthorized(musicUserToken);
+    case 1:
+      return MusicAuthorizationStatusDenied();
+    case 2:
+      return MusicAuthorizationStatusNotDetermined();
+    case 3:
+      return MusicAuthorizationStatusRestricted();
+    default:
+      return MusicAuthorizationStatusInitial();
   }
 }
