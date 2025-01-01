@@ -136,7 +136,6 @@ class ChannelHandler(
   }
 
   @Keep
-  @Suppress("unused", "UNUSED_PARAMETER")
   fun initialize(call: MethodCall, result: MethodChannel.Result) {
     developerToken = call.argument<String>(PARAM_DEVELOPER_TOKEN_KEY)!!
     musicUserToken = call.argument<String>(PARAM_MUSIC_USER_TOKEN_KEY)
@@ -183,7 +182,8 @@ class ChannelHandler(
       return
     }
 
-    activityDispatcher.showAuthActivity(developerToken) { token, error ->
+    val startScreenMessage = call.argument<String?>("startScreenMessage")
+    activityDispatcher.showAuthActivity(developerToken, startScreenMessage) { token, error ->
       if (error != null) {
         result.error(ERR_REQUEST_USER_TOKEN, error.toString(), null)
       } else {
@@ -205,21 +205,22 @@ class ChannelHandler(
   }
 
   @Keep
-  @Suppress("unused", "UNUSED_PARAMETER")
   fun requestUserToken(call: MethodCall, result: MethodChannel.Result) {
     if (!musicUserToken.isNullOrBlank()) {
       result.success(musicUserToken)
       return
     }
 
-    val developerToken = call.argument<String>("developerToken")
+    val developerToken = call.argument<String>(PARAM_DEVELOPER_TOKEN_KEY)
     if (developerToken.isNullOrBlank()) {
       result.error(ERR_REQUEST_USER_TOKEN, null, null)
       return
     }
 
+    val startScreenMessage = call.argument<String?>("startScreenMessage")
+
     this.developerToken = developerToken
-    activityDispatcher.showAuthActivity(developerToken) { token, error ->
+    activityDispatcher.showAuthActivity(developerToken, startScreenMessage) { token, error ->
       if (error != null) {
         result.error(ERR_REQUEST_USER_TOKEN, error.toString(), null)
       } else {
@@ -336,7 +337,6 @@ class ChannelHandler(
   }
 
   @Keep
-  @Suppress("unused", "UNUSED_PARAMETER")
   fun setQueue(call: MethodCall, result: MethodChannel.Result) {
     val itemType = call.argument<String>("type")
     val itemObject = call.argument<Map<String, Any>>("item")
@@ -353,7 +353,6 @@ class ChannelHandler(
   }
 
   @Keep
-  @Suppress("unused", "UNUSED_PARAMETER")
   fun setQueueWithItems(call: MethodCall, result: MethodChannel.Result) {
     val itemType = call.argument<String>("type")
     val itemObjects = call.argument<List<Map<String, Any>>>("items")
@@ -382,7 +381,6 @@ class ChannelHandler(
   }
 
   @Keep
-  @Suppress("unused", "UNUSED_PARAMETER")
   fun setRepeatMode(call: MethodCall, result: MethodChannel.Result) {
     if (playerController?.canSetRepeatMode() == true) {
       val mode = call.arguments as Int
@@ -410,7 +408,6 @@ class ChannelHandler(
   }
 
   @Keep
-  @Suppress("unused", "UNUSED_PARAMETER")
   fun setShuffleMode(call: MethodCall, result: MethodChannel.Result) {
     if (playerController?.canSetShuffleMode() == true) {
       val mode = call.arguments as Int

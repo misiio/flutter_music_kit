@@ -7,10 +7,11 @@
 
 import Foundation
 import MusicKit
+import Flutter
 
 let kErrorRequestUserToken = "ERR_REQUEST_USER_TOKEN"
 
-extension SwiftMusicKitPlugin {
+extension MusicKitPlugin {
   func developerToken(_ result: @escaping FlutterResult) {
     Task {
       do {

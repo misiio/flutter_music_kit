@@ -8,6 +8,7 @@
 import Foundation
 import MusicKit
 import Combine
+import Flutter
 
 extension ApplicationMusicPlayer.Queue: JSONEncodable {
   enum CodingKeys: String, CodingKey {
@@ -41,7 +42,7 @@ extension MusicPlayer.Queue.Entry: Encodable {
   }
 }
 
-extension SwiftMusicKitPlugin {
+extension MusicKitPlugin {
   class MusicPlayerQueueStreamHandler: MusicKitPluginStreamHandler, FlutterStreamHandler {
     let musicPlayer: ApplicationMusicPlayer
     private var playerTask: Task<(), Never>?

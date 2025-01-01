@@ -7,8 +7,9 @@
 
 import Foundation
 import MusicKit
+import Flutter
 
-extension SwiftMusicKitPlugin {
+extension MusicKitPlugin {
   func authorizationStatus(_ result: @escaping FlutterResult) {
     result([
       "status": MusicAuthorization.currentStatus.intValue

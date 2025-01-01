@@ -9,7 +9,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -17,13 +17,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _musicKitPlugin = MusicKit();
-  MusicAuthorizationStatus _status =
-      const MusicAuthorizationStatus.notDetermined();
+  MusicAuthorizationStatus _status = MusicAuthorizationStatusNotDetermined();
   String? _developerToken = '';
   String _userToken = '';
   String _countryCode = '';
 
-  MusicSubscription _musicSubsciption = MusicSubscription();
+  MusicSubscription _musicSubsciption = const MusicSubscription();
   late StreamSubscription<MusicSubscription>
       _musicSubscriptionStreamSubscription;
 
@@ -100,8 +99,14 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             children: [
-              Text('DeveloperToken: $_developerToken\n'),
-              Text('UserToken: $_userToken\n'),
+              Text(
+                'DeveloperToken: $_developerToken\n',
+                maxLines: 3,
+              ),
+              Text(
+                'UserToken: $_userToken\n',
+                maxLines: 3,
+              ),
               Text('Status: ${_status.toString()}\n'),
               Text('CountryCode: $_countryCode\n'),
               Text('Subscription: ${_musicSubsciption.toString()}\n'),

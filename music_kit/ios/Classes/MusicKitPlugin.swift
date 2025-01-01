@@ -1,23 +1,33 @@
-import Flutter
 import UIKit
 import MusicKit
 import Combine
+import Flutter
 
-public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
+public class MusicKitPlugin: NSObject, FlutterPlugin {
   internal var musicPlayer: ApplicationMusicPlayer = ApplicationMusicPlayer.shared
   
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "plugins.misi.app/music_kit", binaryMessenger: registrar.messenger())
-    let instance = SwiftMusicKitPlugin()
+    let instance = MusicKitPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
     
-    let musicSubcriptionEventChannel = FlutterEventChannel(name: "plugins.misi.app/music_kit/music_subscription", binaryMessenger: registrar.messenger())
-    musicSubcriptionEventChannel.setStreamHandler(MusicSubscriptionStreamHandler())
+    let musicSubscriptionEventChannel = FlutterEventChannel(
+      name: "plugins.misi.app/music_kit/music_subscription",
+      binaryMessenger: registrar.messenger(),
+      codec: FlutterStandardMethodCodec.sharedInstance()
+    )
+    musicSubscriptionEventChannel.setStreamHandler(MusicSubscriptionStreamHandler())
     
-    let musicPlayerStateEventChannel = FlutterEventChannel(name: "plugins.misi.app/music_kit/player_state", binaryMessenger: registrar.messenger())
+    let musicPlayerStateEventChannel = FlutterEventChannel(
+      name: "plugins.misi.app/music_kit/player_state",
+      binaryMessenger: registrar.messenger()
+    )
     musicPlayerStateEventChannel.setStreamHandler(MusicPlayerStreamHandler(musicPlayer: instance.musicPlayer))
     
-    let musicPlayerQueueEventChannel = FlutterEventChannel(name: "plugins.misi.app/music_kit/player_queue", binaryMessenger: registrar.messenger())
+    let musicPlayerQueueEventChannel = FlutterEventChannel(
+      name: "plugins.misi.app/music_kit/player_queue",
+      binaryMessenger: registrar.messenger()
+    )
     musicPlayerQueueEventChannel.setStreamHandler(MusicPlayerQueueStreamHandler(musicPlayer: instance.musicPlayer))
   }
 
@@ -38,7 +48,8 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
       developerToken(result)
       
     case .requestUserToken:
-      fetchUserToken(developerToken: call.arguments as! String, result: result)
+      let arguments = call.arguments as! JSONObject
+      fetchUserToken(developerToken: arguments["developerToken"] as! String, result: result)
       
     case .currentCountryCode:
       currentCountryCode(result)
@@ -111,7 +122,7 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
   }
 }
 
-extension SwiftMusicKitPlugin {
+extension MusicKitPlugin {
   class MusicKitPluginStreamHandler: NSObject {
     var eventSink: FlutterEventSink? = nil
   }

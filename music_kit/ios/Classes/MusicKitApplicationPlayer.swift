@@ -7,10 +7,11 @@
 
 import Foundation
 import MusicKit
+import Flutter
 
 typealias ResourceObject = JSONObject
 
-extension SwiftMusicKitPlugin {
+extension MusicKitPlugin {
   func setQueue(itemType: String, itemObject: ResourceObject, result: @escaping FlutterResult) {
     do {
       let playableItem: MusicItem? = try parseMusicItem(itemType, from: itemObject)

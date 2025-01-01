@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension SwiftMusicKitPlugin {
+extension MusicKitPlugin {
   enum MethodKeys: String {
     case authorizationStatus
     case requestAuthorizationStatus

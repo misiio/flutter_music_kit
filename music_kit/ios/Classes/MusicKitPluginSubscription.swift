@@ -7,17 +7,21 @@
 
 import Foundation
 import MusicKit
+import Flutter
 
-extension SwiftMusicKitPlugin {
+extension MusicKitPlugin {
   class MusicSubscriptionStreamHandler: MusicKitPluginStreamHandler, FlutterStreamHandler {
     private var updatesTask: Task<(), Never>?
+    
     
     func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
       eventSink = events
       
       updatesTask = Task {
         for await subscription in MusicSubscription.subscriptionUpdates {
-          eventSink?(subscription.jsonObject())
+          DispatchQueue.main.async { [eventSink] in
+            eventSink?(subscription.jsonObject())
+          }
         }
       }
       

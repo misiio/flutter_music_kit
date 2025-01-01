@@ -8,13 +8,14 @@
 import Foundation
 import MusicKit
 import Combine
+import Flutter
 
 let kErrorPlay = "ERR_PLAYER_PLAY"
 let kErrorPrepareToPlay = "ERR_PLAYER_PREPARE_TO_PLAY"
 let kErrorSkipToNext = "ERR_PLAYER_SKIP_TO_NEXT"
 let kErrorSkipToPrevious = "ERR_PLAYER_SKIP_TO_PREVIOUS"
 
-extension SwiftMusicKitPlugin {
+extension MusicKitPlugin {
   func isPreparedToPlay(_ result: @escaping FlutterResult) {
     result(musicPlayer.isPreparedToPlay)
   }
@@ -119,7 +120,7 @@ enum MusicItemType {
   }
 }
 
-extension SwiftMusicKitPlugin {
+extension MusicKitPlugin {
   class MusicPlayerStreamHandler: MusicKitPluginStreamHandler, FlutterStreamHandler {
     let musicPlayer: ApplicationMusicPlayer
     private var playerTask: Task<(), Never>?

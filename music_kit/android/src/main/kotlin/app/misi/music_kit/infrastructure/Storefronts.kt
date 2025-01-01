@@ -10,9 +10,7 @@ data class Storefronts(val data: Array<Storefront>) {
 
     other as Storefronts
 
-    if (!data.contentEquals(other.data)) return false
-
-    return true
+    return data.contentEquals(other.data)
   }
 
   override fun hashCode(): Int {

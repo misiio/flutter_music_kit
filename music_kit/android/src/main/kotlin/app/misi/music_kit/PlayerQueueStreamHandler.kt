@@ -38,19 +38,19 @@ class PlayerQueueStreamHandler(private val playerController: MediaPlayerControll
 
   private val playerControllerListener = object : MediaPlayerController.Listener {
     override fun onPlayerStateRestored(p0: MediaPlayerController) {
-      Log.d(LOG_TAG, "PQSH onPlayerStateRestored()")
+      Log.d(LOG_TAG, "Queue Handler onPlayerStateRestored()")
     }
 
     override fun onPlaybackStateChanged(p0: MediaPlayerController, p1: Int, p2: Int) {
-      Log.d(LOG_TAG, "PQSH onPlaybackStateChanged() prevState: $p1 currentState: $p2")
+      Log.d(LOG_TAG, "Queue Handler onPlaybackStateChanged() prevState: $p1 currentState: $p2")
     }
 
     override fun onPlaybackStateUpdated(p0: MediaPlayerController) {
-      Log.d(LOG_TAG, "PQSH onPlaybackStateUpdated()")
+      Log.d(LOG_TAG, "Queue Handler onPlaybackStateUpdated()")
     }
 
     override fun onBufferingStateChanged(p0: MediaPlayerController, p1: Boolean) {
-      Log.d(LOG_TAG, "PQSH onBufferingStateChanged() buffering: $p1")
+      Log.d(LOG_TAG, "Queue Handler onBufferingStateChanged() buffering: $p1")
     }
 
     override fun onCurrentItemChanged(
@@ -61,24 +61,24 @@ class PlayerQueueStreamHandler(private val playerController: MediaPlayerControll
       currentEntry = currentItem?.let { convertQueueItem(it) }
       Log.d(
         LOG_TAG,
-        "PQSH onCurrentItemChanged() prevItem: ${previousItem?.playbackQueueId} currentItem: $currentEntry"
+        "Queue Handler onCurrentItemChanged() prevItem: ${previousItem?.playbackQueueId} currentItem: $currentEntry"
       )
       updateQueue()
     }
 
     override fun onItemEnded(p0: MediaPlayerController, p1: PlayerQueueItem, p2: Long) {
-      Log.d(LOG_TAG, "PQSH onItemEnded() queueItem: ${p1.playbackQueueId} endPosition: $p2")
+      Log.d(LOG_TAG, "Queue Handler onItemEnded() queueItem: ${p1.playbackQueueId} endPosition: $p2")
     }
 
     override fun onMetadataUpdated(p0: MediaPlayerController, p1: PlayerQueueItem) {
-      Log.d(LOG_TAG, "PQSH onMetadataUpdated() queueItem: ${p1.playbackQueueId}")
+      Log.d(LOG_TAG, "Queue Handler onMetadataUpdated() queueItem: ${p1.playbackQueueId}")
     }
 
     override fun onPlaybackQueueChanged(
       p0: MediaPlayerController,
       playbackQueueItems: MutableList<PlayerQueueItem>
     ) {
-      Log.d(LOG_TAG, "PQSH onPlaybackQueueChanged() numOfQueueItems: ${playbackQueueItems.size}")
+      Log.d(LOG_TAG, "Queue Handler onPlaybackQueueChanged() numOfQueueItems: ${playbackQueueItems.size}")
       entries = playbackQueueItems.map {
         convertQueueItem(it)
       }.toList()
@@ -88,20 +88,20 @@ class PlayerQueueStreamHandler(private val playerController: MediaPlayerControll
     override fun onPlaybackQueueItemsAdded(p0: MediaPlayerController, p1: Int, p2: Int, p3: Int) {
       Log.d(
         LOG_TAG,
-        "PQSH onPlaybackQueueItemsAdded() insertionType: $p1 containerType: $p2 itemType: $p3"
+        "Queue Handler onPlaybackQueueItemsAdded() insertionType: $p1 containerType: $p2 itemType: $p3"
       )
     }
 
     override fun onPlaybackError(p0: MediaPlayerController, p1: MediaPlayerException) {
-      Log.d(LOG_TAG, "PQSH onPlaybackError() error(${p1.errorCode}): ${p1.message}")
+      Log.d(LOG_TAG, "Queue Handler onPlaybackError() error(${p1.errorCode}): ${p1.message}")
     }
 
     override fun onPlaybackRepeatModeChanged(p0: MediaPlayerController, p1: Int) {
-      Log.d(LOG_TAG, "PQSH onPlaybackRepeatModeChanged() repeatMode: $p1")
+      Log.d(LOG_TAG, "Queue Handler onPlaybackRepeatModeChanged() repeatMode: $p1")
     }
 
     override fun onPlaybackShuffleModeChanged(p0: MediaPlayerController, p1: Int) {
-      Log.d(LOG_TAG, "PQSH onPlaybackShuffleModeChanged() shuffleMode: $p1")
+      Log.d(LOG_TAG, "Queue Handler onPlaybackShuffleModeChanged() shuffleMode: $p1")
     }
   }
 
@@ -116,13 +116,13 @@ class PlayerQueueStreamHandler(private val playerController: MediaPlayerControll
 
 @SuppressLint("SwitchIntDef")
 fun PlayerMediaItem.toJson(): Map<String, Any?> {
-  return mapOf<String, Any?>(
+  return mapOf(
     "id" to this.subscriptionStoreId,
     "type" to when (this.type) {
       1 -> "songs"
       else -> "unknown"
     },
-    "attributes" to mapOf<String, Any?>(
+    "attributes" to mapOf(
       "artistName" to this.artistName,
       "albumName" to this.albumTitle,
       "contentRating" to if (this.isExplicitContent) "explicit" else null,

@@ -33,6 +33,7 @@ class ActivityDispatcher(
 
   fun showAuthActivity(
     developerToken: String,
+    startScreenMessage: String?,
     completionHandler: ((String?, TokenError?) -> Unit)?
   ) {
     if (activity == null) {

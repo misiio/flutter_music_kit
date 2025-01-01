@@ -3,7 +3,7 @@ package app.misi.music_kit.infrastructure
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class UserStorefrontRepository() {
+class UserStorefrontRepository {
   suspend fun getStorefrontId(
     developerToken: String,
     musicUserToken: String

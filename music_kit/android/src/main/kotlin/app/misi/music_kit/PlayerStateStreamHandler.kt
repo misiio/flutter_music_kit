@@ -33,7 +33,7 @@ class PlayerStateStreamHandler(private val playerController: MediaPlayerControll
 
   private val playerControllerListener = object : MediaPlayerController.Listener {
     override fun onPlayerStateRestored(p0: MediaPlayerController) {
-      Log.d(LOG_TAG, "PSSH onPlayerStateRestored()")
+      Log.d(LOG_TAG, "State Handler onPlayerStateRestored()")
     }
 
     override fun onPlaybackStateChanged(
@@ -43,18 +43,18 @@ class PlayerStateStreamHandler(private val playerController: MediaPlayerControll
     ) {
       Log.d(
         LOG_TAG,
-        "PSSH onPlaybackStateChanged() prevState: $previousState currentState: $currentState"
+        "State Handler onPlaybackStateChanged() prevState: $previousState currentState: $currentState"
       )
       playbackState = currentState
       updatePlaybackState()
     }
 
     override fun onPlaybackStateUpdated(p0: MediaPlayerController) {
-      Log.d(LOG_TAG, "PSSH onPlaybackStateUpdated()")
+      Log.d(LOG_TAG, "State Handler onPlaybackStateUpdated()")
     }
 
     override fun onBufferingStateChanged(p0: MediaPlayerController, p1: Boolean) {
-      Log.d(LOG_TAG, "PSSH onBufferingStateChanged() buffering: $p1")
+      Log.d(LOG_TAG, "State Handler onBufferingStateChanged() buffering: $p1")
       if (playerController?.playbackState != null) {
         playbackState = playerController.playbackState
         updatePlaybackState()
@@ -68,7 +68,7 @@ class PlayerStateStreamHandler(private val playerController: MediaPlayerControll
     ) {
       Log.d(
         LOG_TAG,
-        "PSSH onCurrentItemChanged() prevItem: ${previousItem?.playbackQueueId} currentItem: ${currentItem?.playbackQueueId}"
+        "State Handler onCurrentItemChanged() prevItem: ${previousItem?.playbackQueueId} currentItem: ${currentItem?.playbackQueueId}"
       )
       if (playerController?.playbackState != null) {
         playbackState = playerController.playbackState
@@ -77,37 +77,37 @@ class PlayerStateStreamHandler(private val playerController: MediaPlayerControll
     }
 
     override fun onItemEnded(p0: MediaPlayerController, p1: PlayerQueueItem, p2: Long) {
-      Log.d(LOG_TAG, "PSSH onItemEnded() queueItem: ${p1.playbackQueueId} endPosition: $p2")
+      Log.d(LOG_TAG, "State Handler onItemEnded() queueItem: ${p1.playbackQueueId} endPosition: $p2")
     }
 
     override fun onMetadataUpdated(p0: MediaPlayerController, p1: PlayerQueueItem) {
-      Log.d(LOG_TAG, "PSSH onMetadataUpdated() queueItem: ${p1.playbackQueueId}")
+      Log.d(LOG_TAG, "State Handler onMetadataUpdated() queueItem: ${p1.playbackQueueId}")
     }
 
     override fun onPlaybackQueueChanged(
       p0: MediaPlayerController,
       p1: MutableList<PlayerQueueItem>
     ) {
-      Log.d(LOG_TAG, "PSSH onPlaybackQueueChanged() numOfQueueItems: ${p1.size}")
+      Log.d(LOG_TAG, "State Handler onPlaybackQueueChanged() numOfQueueItems: ${p1.size}")
     }
 
     override fun onPlaybackQueueItemsAdded(p0: MediaPlayerController, p1: Int, p2: Int, p3: Int) {
       Log.d(
         LOG_TAG,
-        "PSSH onPlaybackQueueItemsAdded() insertionType: $p1 containerType: $p2 itemType: $p3"
+        "State Handler onPlaybackQueueItemsAdded() insertionType: $p1 containerType: $p2 itemType: $p3"
       )
     }
 
     override fun onPlaybackError(p0: MediaPlayerController, p1: MediaPlayerException) {
-      Log.d(LOG_TAG, "PSSH onPlaybackError() error(${p1.errorCode}): ${p1.message}")
+      Log.d(LOG_TAG, "State Handler onPlaybackError() error(${p1.errorCode}): ${p1.message}")
     }
 
     override fun onPlaybackRepeatModeChanged(p0: MediaPlayerController, p1: Int) {
-      Log.d(LOG_TAG, "PSSH onPlaybackRepeatModeChanged() repeatMode: $p1")
+      Log.d(LOG_TAG, "State Handler onPlaybackRepeatModeChanged() repeatMode: $p1")
     }
 
     override fun onPlaybackShuffleModeChanged(p0: MediaPlayerController, p1: Int) {
-      Log.d(LOG_TAG, "PSSH onPlaybackShuffleModeChanged() shuffleMode: $p1")
+      Log.d(LOG_TAG, "State Handler onPlaybackShuffleModeChanged() shuffleMode: $p1")
     }
   }
 

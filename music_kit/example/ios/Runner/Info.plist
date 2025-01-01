@@ -55,5 +55,7 @@
 	<false/>
 	<key>kTCCServiceMediaLibrary</key>
 	<string>Misica uses Apple Music to help you rediscover your music.</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 </dict>
 </plist>

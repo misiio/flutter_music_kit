@@ -7,8 +7,9 @@
 
 import Foundation
 import MusicKit
+import Flutter
 
-extension SwiftMusicKitPlugin {
+extension MusicKitPlugin {
   func currentCountryCode(_ result: @escaping FlutterResult) {
     Task {
       do {

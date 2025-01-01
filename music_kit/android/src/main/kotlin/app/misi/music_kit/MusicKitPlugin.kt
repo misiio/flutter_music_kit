@@ -27,7 +27,7 @@ class MusicKitPlugin : FlutterPlugin, ActivityAware {
     }
   }
 
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     activityDispatcher = ActivityDispatcher(flutterPluginBinding.applicationContext)
     channelHandler = ChannelHandler(flutterPluginBinding.applicationContext, activityDispatcher)
     channelHandler.startListening(flutterPluginBinding.binaryMessenger)
@@ -54,7 +54,7 @@ class MusicKitPlugin : FlutterPlugin, ActivityAware {
     onDetachedFromActivity()
   }
 
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     Log.d(LOG_TAG, "onDetachedFromEngine")
     channelHandler.stopListening()
     channelHandler.cleanUp()
