@@ -2,8 +2,16 @@ import 'package:music_kit_platform_interface/music_kit_platform_interface.dart';
 
 export 'package:music_kit_platform_interface/music_kit_platform_interface.dart'
     show
+        //
         MusicAuthorizationStatus,
+        MusicAuthorizationStatusInitial,
+        MusicAuthorizationStatusAuthorized,
+        MusicAuthorizationStatusDenied,
+        MusicAuthorizationStatusNotDetermined,
+        MusicAuthorizationStatusRestricted,
+        //
         MusicSubscription,
+        //
         MusicPlayerState,
         MusicPlayerQueue,
         MusicPlayerQueueEntry,
