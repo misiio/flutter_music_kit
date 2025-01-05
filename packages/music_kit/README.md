@@ -1,17 +1,30 @@
 # Music Kit
 
-
 A Flutter plugin to access and play Apple Music.
 
 ## Platform Support
 
 | Android | iOS | MacOS | Web | Linux | Windows |
-| :-----: | :-: | :---: | :-: | :---: | :----: |
-|   ✔️    | ✔️  |  ✗   | ✗  |  ✗   |   ✗   |
+| :-----: | :-: | :---: | :-: | :---: | :-----: |
+|   ✔️    | ✔️  |   ✗   |  ✗  |   ✗   |    ✗    |
 
 ## Usage
 
 To use this plugin, add `music_kit` as a dependency in your pubspec.yaml file.
+
+### Extra steps needs for Android
+
+1. Add the JitPack repository to your build file.
+
+```
+repositories {
+  ...
+  maven { url 'https://jitpack.io' }
+}
+```
+
+2. Call `initialize(developerToken, musicUserToken: [userToken])` method manually
+   before using the MusicKit instance.
 
 ### Example
 
