@@ -2,6 +2,7 @@ package app.misi.music_kit.infrastructure
 
 import kotlinx.serialization.Serializable
 
+
 @Serializable
 data class Storefronts(val data: Array<Storefront>) {
   override fun equals(other: Any?): Boolean {

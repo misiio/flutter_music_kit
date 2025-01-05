@@ -1,0 +1,8 @@
+name: music_kit_workspace
+publish_to: none
+environment:
+  sdk: ^3.6.0
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  melos: ^6.2.0

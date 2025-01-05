@@ -8,7 +8,6 @@
 .buildlog/
 .history
 .svn/
-.vscode/
 migrate_working_dir/
 
 # IntelliJ related
@@ -30,3 +29,5 @@ pubspec_overrides.yaml
 .dart_tool/
 .packages
 build/
+
+.melos_tool/

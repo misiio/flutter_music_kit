@@ -1,0 +1,4 @@
+name: music_kit_workspace
+
+packages:
+  - packages/**
