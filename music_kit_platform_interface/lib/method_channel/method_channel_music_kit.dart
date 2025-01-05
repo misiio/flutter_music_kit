@@ -99,6 +99,11 @@ class MethodChannelMusicKit extends MusicKitPlatform {
   }
 
   @override
+  Future<void> setPlaybackTime(double time) {
+    return methodChannel.invokeMethod('setPlaybackTime', time);
+  }
+
+  @override
   Future<MusicPlayerState> get musicPlayerState async {
     final resp = await methodChannel
         .invokeMapMethod<String, dynamic>('musicPlayerState');

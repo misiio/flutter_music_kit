@@ -48,6 +48,9 @@ public class SwiftMusicKitPlugin: NSObject, FlutterPlugin {
       
     case .playbackTime:
       playbackTime(result)
+
+    case .setPlaybackTime:
+      setPlaybackTime(call.arguments as! Double, result: result)
       
     case .musicPlayerState:
       musicPlayerState(result)
