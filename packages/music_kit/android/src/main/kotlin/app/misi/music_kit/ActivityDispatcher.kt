@@ -48,7 +48,8 @@ class ActivityDispatcher(
       AuthActivityResultHandler(authenticationManager, completionHandler)
 
     val intent = authenticationManager.createIntentBuilder(developerToken)
-      .setHideStartScreen(true)
+      .setHideStartScreen(startScreenMessage == null)
+      .setStartScreenMessage(startScreenMessage)
       .build()
 
     activity?.startActivityForResult(intent, REQUEST_CODE_APPLE_MUSIC_AUTH)
