@@ -38,6 +38,9 @@ public class MusicKitPlugin: NSObject, FlutterPlugin {
     }
     
     switch methodKey {
+    case .initialize:
+        result(nil)
+        
     case .authorizationStatus:
       authorizationStatus(result)
         
@@ -133,3 +136,4 @@ extension FlutterError {
     self.init(code: code, message: message, details: nil)
   }
 }
+

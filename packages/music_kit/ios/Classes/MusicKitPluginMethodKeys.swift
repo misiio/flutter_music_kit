@@ -9,6 +9,7 @@ import Foundation
 
 extension MusicKitPlugin {
   enum MethodKeys: String {
+    case initialize
     case authorizationStatus
     case requestAuthorizationStatus
     //
