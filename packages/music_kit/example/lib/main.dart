@@ -71,7 +71,20 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     final status = await _musicKitPlugin.authorizationStatus;
 
+    switch (status) {
+      case MusicAuthorizationStatusInitial() ||
+            MusicAuthorizationStatusDenied() ||
+            MusicAuthorizationStatusNotDetermined() ||
+            MusicAuthorizationStatusRestricted():
+        return;
+      case MusicAuthorizationStatusAuthorized():
+        {}
+    }
+
     final developerToken = await _musicKitPlugin.requestDeveloperToken();
+
+    if (_musicSubsciption.canBecomeSubscriber == true) return;
+
     final userToken = await _musicKitPlugin.requestUserToken(developerToken);
 
     final countryCode = await _musicKitPlugin.currentCountryCode;
