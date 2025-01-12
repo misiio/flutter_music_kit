@@ -1,3 +1,7 @@
+## 1.2.1
+
+- **BUILD**(music_kit): add Swift Package Manager support.
+
 ## 1.2.0
 
 - **REFACTOR**(music_kit): add empty `initialize` method in ios.

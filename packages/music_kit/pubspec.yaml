@@ -1,6 +1,6 @@
 name: music_kit
 description: A Flutter plugin to access and play Apple Music.
-version: 1.2.0
+version: 1.2.1
 homepage: https://github.com/misiio/flutter_music_kit/tree/master/music_kit
 
 environment:
