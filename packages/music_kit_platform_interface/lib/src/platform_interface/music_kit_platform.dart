@@ -17,40 +17,32 @@ abstract class MusicKitPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<void> initialize(String developerToken,
-      {String? musicUserToken}) async {
+  Future<void> initialize(String developerToken, {String? musicUserToken}) async {
     throw UnimplementedError('initialize() has not been implemented.');
   }
 
-  Future<MusicAuthorizationStatus> requestAuthorizationStatus(
-      {String? startScreenMessage}) async {
-    throw UnimplementedError(
-        'requestAuthorizationStatus() has not been implemented.');
+  Future<MusicAuthorizationStatus> requestAuthorizationStatus({String? startScreenMessage}) async {
+    throw UnimplementedError('requestAuthorizationStatus() has not been implemented.');
   }
 
   Future<MusicAuthorizationStatus> get authorizationStatus async {
-    throw UnimplementedError(
-        'get authorizationStatus has not been implemented.');
+    throw UnimplementedError('get authorizationStatus has not been implemented.');
   }
 
   Future<String> requestDeveloperToken() async {
-    throw UnimplementedError(
-        'get requestDeveloperToken() has not been implemented.');
+    throw UnimplementedError('get requestDeveloperToken() has not been implemented.');
   }
 
-  Future<String> requestUserToken(String developerToken,
-      {String? startScreenMessage}) async {
+  Future<String> requestUserToken(String developerToken, {String? startScreenMessage}) async {
     throw UnimplementedError('requestUserToken() has not been implemented.');
   }
 
   Future<String> get currentCountryCode async {
-    throw UnimplementedError(
-        'get currentCountryCode has not been implemented.');
+    throw UnimplementedError('get currentCountryCode has not been implemented.');
   }
 
   Stream<MusicSubscription> get onSubscriptionUpdated {
-    throw UnimplementedError(
-        'get onSubscriptionUpdated has not been implemented.');
+    throw UnimplementedError('get onSubscriptionUpdated has not been implemented.');
   }
 
   ///
@@ -67,13 +59,11 @@ abstract class MusicKitPlatform extends PlatformInterface {
   }
 
   Stream<MusicPlayerState> get onMusicPlayerStateChanged {
-    throw UnimplementedError(
-        'get onMusicPlayerStateChanged has not been implemented.');
+    throw UnimplementedError('get onMusicPlayerStateChanged has not been implemented.');
   }
 
   Future<void> beginSeekingBackward() async {
-    throw UnimplementedError(
-        'beginSeekingBackward() has not been implemented.');
+    throw UnimplementedError('beginSeekingBackward() has not been implemented.');
   }
 
   Future<void> beginSeekingForward() async {
@@ -125,8 +115,7 @@ abstract class MusicKitPlatform extends PlatformInterface {
   }
 
   Stream<MusicPlayerQueue> get onPlayerQueueChanged {
-    throw UnimplementedError(
-        'get onPlayerQueueChanged has not been implemented.');
+    throw UnimplementedError('get onPlayerQueueChanged has not been implemented.');
   }
 
   Future<MusicPlayerRepeatMode> get repeatMode async {

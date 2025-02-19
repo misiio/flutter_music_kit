@@ -26,8 +26,7 @@ class MusicPlayerState {
   static MusicPlayerState fromMap(Map<String, dynamic> json) {
     return MusicPlayerState(
       playbackRate: json['playbackRate'] as num,
-      playbackStatus:
-          MusicPlayerPlaybackStatus.values[json['playbackStatus'] as int],
+      playbackStatus: MusicPlayerPlaybackStatus.values[json['playbackStatus'] as int],
       repeatMode: MusicPlayerRepeatMode.values[json['repeatMode'] as int],
       shuffleMode: MusicPlayerShuffleMode.values[json['shuffleMode'] as int],
     );

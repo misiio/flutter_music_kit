@@ -31,8 +31,7 @@ class MusicPlayerQueueEntry {
   /// The subtitle of this entry of the playback queue.
   final String? subtitle;
 
-  factory MusicPlayerQueueEntry.fromJson(Map<String, Object?> json) =>
-      _$MusicPlayerQueueEntryFromJson(json);
+  factory MusicPlayerQueueEntry.fromJson(Map<String, Object?> json) => _$MusicPlayerQueueEntryFromJson(json);
 
   Map<String, dynamic> toJson() => _$MusicPlayerQueueEntryToJson(this);
 }
@@ -52,6 +51,5 @@ class MusicPlayerQueue {
   //   MusicPlayerQueueEntry? currentEntry,
   // }) = _MusicPlayerQueue;
 
-  factory MusicPlayerQueue.fromJson(Map<String, Object?> json) =>
-      _$MusicPlayerQueueFromJson(json);
+  factory MusicPlayerQueue.fromJson(Map<String, Object?> json) => _$MusicPlayerQueueFromJson(json);
 }

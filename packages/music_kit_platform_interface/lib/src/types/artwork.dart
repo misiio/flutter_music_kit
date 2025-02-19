@@ -24,8 +24,7 @@ class Artwork {
   final String url;
   final num width;
 
-  factory Artwork.fromJson(Map<String, dynamic> json) =>
-      _$ArtworkFromJson(json);
+  factory Artwork.fromJson(Map<String, dynamic> json) => _$ArtworkFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArtworkToJson(this);
 }

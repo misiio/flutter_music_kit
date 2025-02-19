@@ -36,25 +36,19 @@ class MusicKit {
   Future<void> initialize(String developerToken, {String? musicUserToken}) =>
       _platform.initialize(developerToken, musicUserToken: musicUserToken);
 
-  Future<MusicAuthorizationStatus> requestAuthorizationStatus(
-          {String? startScreenMessage}) =>
-      _platform.requestAuthorizationStatus(
-          startScreenMessage: startScreenMessage);
+  Future<MusicAuthorizationStatus> requestAuthorizationStatus({String? startScreenMessage}) =>
+      _platform.requestAuthorizationStatus(startScreenMessage: startScreenMessage);
 
-  Future<MusicAuthorizationStatus> get authorizationStatus =>
-      _platform.authorizationStatus;
+  Future<MusicAuthorizationStatus> get authorizationStatus => _platform.authorizationStatus;
 
   Future<String> requestDeveloperToken() => _platform.requestDeveloperToken();
 
-  Future<String> requestUserToken(String developerToken,
-          {String? startScreenMessage}) =>
-      _platform.requestUserToken(developerToken,
-          startScreenMessage: startScreenMessage);
+  Future<String> requestUserToken(String developerToken, {String? startScreenMessage}) =>
+      _platform.requestUserToken(developerToken, startScreenMessage: startScreenMessage);
 
   Future<String> get currentCountryCode => _platform.currentCountryCode;
 
-  Stream<MusicSubscription> get onSubscriptionUpdated =>
-      _platform.onSubscriptionUpdated;
+  Stream<MusicSubscription> get onSubscriptionUpdated => _platform.onSubscriptionUpdated;
 
   // player
   Future<bool> get isPreparedToPlay => _platform.isPreparedToPlay;
@@ -63,8 +57,7 @@ class MusicKit {
 
   Future<MusicPlayerState> get musicPlayerState => _platform.musicPlayerState;
 
-  Stream<MusicPlayerState> get onMusicPlayerStateChanged =>
-      _platform.onMusicPlayerStateChanged;
+  Stream<MusicPlayerState> get onMusicPlayerStateChanged => _platform.onMusicPlayerStateChanged;
 
   Future<void> beginSeekingBackward() => _platform.beginSeekingBackward();
 
@@ -86,8 +79,7 @@ class MusicKit {
 
   Future<void> stop() => _platform.stop();
 
-  Future<void> setQueue(String type, {required ResourceObject item}) =>
-      _platform.setQueue(
+  Future<void> setQueue(String type, {required ResourceObject item}) => _platform.setQueue(
         type,
         item: item,
       );
@@ -103,22 +95,17 @@ class MusicKit {
         startingAt: startingAt,
       );
 
-  Stream<MusicPlayerQueue> get onPlayerQueueChanged =>
-      _platform.onPlayerQueueChanged;
+  Stream<MusicPlayerQueue> get onPlayerQueueChanged => _platform.onPlayerQueueChanged;
 
   Future<MusicPlayerRepeatMode> get repeatMode => _platform.repeatMode;
 
-  Future<void> setRepeatMode(MusicPlayerRepeatMode mode) =>
-      _platform.setRepeatMode(mode);
+  Future<void> setRepeatMode(MusicPlayerRepeatMode mode) => _platform.setRepeatMode(mode);
 
-  Future<MusicPlayerRepeatMode> toggleRepeatMode() =>
-      _platform.toggleRepeatMode();
+  Future<MusicPlayerRepeatMode> toggleRepeatMode() => _platform.toggleRepeatMode();
 
   Future<MusicPlayerShuffleMode> get shuffleMode => _platform.shuffleMode;
 
-  Future<void> setShuffleMode(MusicPlayerShuffleMode mode) =>
-      _platform.setShuffleMode(mode);
+  Future<void> setShuffleMode(MusicPlayerShuffleMode mode) => _platform.setShuffleMode(mode);
 
-  Future<MusicPlayerShuffleMode> toggleShuffleMode() =>
-      _platform.toggleShuffleMode();
+  Future<MusicPlayerShuffleMode> toggleShuffleMode() => _platform.toggleShuffleMode();
 }
