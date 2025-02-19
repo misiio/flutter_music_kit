@@ -7,7 +7,12 @@
 
 import Foundation
 import MusicKit
+
+#if os(iOS)
 import Flutter
+#else
+import FlutterMacOS
+#endif
 
 let kErrorRequestUserToken = "ERR_REQUEST_USER_TOKEN"
 

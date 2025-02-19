@@ -9,10 +9,6 @@ profile
 
 DerivedData/
 build/
-GeneratedPluginRegistrant.h
-GeneratedPluginRegistrant.m
-
-.generated/
 
 *.pbxuser
 *.mode1v3
@@ -33,6 +29,5 @@ xcuserdata
 Icon?
 .tags*
 
-/Flutter/Generated.xcconfig
-/Flutter/ephemeral/
-/Flutter/flutter_export_environment.sh
+.build/
+.swiftpm/

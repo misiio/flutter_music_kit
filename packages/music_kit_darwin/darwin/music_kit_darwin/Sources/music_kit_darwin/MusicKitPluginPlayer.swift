@@ -8,7 +8,12 @@
 import Foundation
 import MusicKit
 import Combine
+
+#if os(iOS)
 import Flutter
+#else
+import FlutterMacOS
+#endif
 
 let kErrorPlay = "ERR_PLAYER_PLAY"
 let kErrorPrepareToPlay = "ERR_PLAYER_PREPARE_TO_PLAY"

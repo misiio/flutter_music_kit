@@ -7,7 +7,12 @@
 
 import Foundation
 import MusicKit
+
+#if os(iOS)
 import Flutter
+#else
+import FlutterMacOS
+#endif
 
 extension MusicKitPlugin {
   func currentCountryCode(_ result: @escaping FlutterResult) {

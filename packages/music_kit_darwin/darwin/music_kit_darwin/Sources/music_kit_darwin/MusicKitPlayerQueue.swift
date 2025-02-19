@@ -8,7 +8,12 @@
 import Foundation
 import MusicKit
 import Combine
+
+#if os(iOS)
 import Flutter
+#else
+import FlutterMacOS
+#endif
 
 extension ApplicationMusicPlayer.Queue: JSONEncodable {
   enum CodingKeys: String, CodingKey {

@@ -1,32 +1,44 @@
-import UIKit
 import MusicKit
 import Combine
+
+#if os(iOS)
 import Flutter
+import UIKit
+#else
+import FlutterMacOS
+import AppKit
+#endif
 
 public class MusicKitPlugin: NSObject, FlutterPlugin {
   internal var musicPlayer: ApplicationMusicPlayer = ApplicationMusicPlayer.shared
   
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "plugins.misi.app/music_kit", binaryMessenger: registrar.messenger())
+    #if os(iOS)
+    let messenger = registrar.messenger()
+    #else
+    let messenger = registrar.messenger
+    #endif
+    
+    let channel = FlutterMethodChannel(name: "plugins.misi.app/music_kit", binaryMessenger: messenger)
     let instance = MusicKitPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
     
     let musicSubscriptionEventChannel = FlutterEventChannel(
       name: "plugins.misi.app/music_kit/music_subscription",
-      binaryMessenger: registrar.messenger(),
+      binaryMessenger: messenger,
       codec: FlutterStandardMethodCodec.sharedInstance()
     )
     musicSubscriptionEventChannel.setStreamHandler(MusicSubscriptionStreamHandler())
     
     let musicPlayerStateEventChannel = FlutterEventChannel(
       name: "plugins.misi.app/music_kit/player_state",
-      binaryMessenger: registrar.messenger()
+      binaryMessenger: messenger
     )
     musicPlayerStateEventChannel.setStreamHandler(MusicPlayerStreamHandler(musicPlayer: instance.musicPlayer))
     
     let musicPlayerQueueEventChannel = FlutterEventChannel(
       name: "plugins.misi.app/music_kit/player_queue",
-      binaryMessenger: registrar.messenger()
+      binaryMessenger: messenger
     )
     musicPlayerQueueEventChannel.setStreamHandler(MusicPlayerQueueStreamHandler(musicPlayer: instance.musicPlayer))
   }

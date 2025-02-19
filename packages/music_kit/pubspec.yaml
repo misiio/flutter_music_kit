@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   music_kit_platform_interface: ^1.2.0
+  music_kit_darwin: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -24,4 +25,11 @@ flutter:
         package: app.misi.music_kit
         pluginClass: MusicKitPlugin
       ios:
-        pluginClass: MusicKitPlugin
+        default_package: music_kit_darwin
+      macos:
+        default_package: music_kit_darwin
+
+platforms:
+  android:
+  ios:
+  macos:
