@@ -1,3 +1,7 @@
+## 1.3.0
+
+ - **FEAT**(music_kit): add macOS support.
+
 ## 1.2.1
 
 - **BUILD**(music_kit): add Swift Package Manager support.

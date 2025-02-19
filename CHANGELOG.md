@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-02-20
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`music_kit` - `v1.3.0`](#music_kit---v130)
+ - [`music_kit_darwin` - `v1.3.0`](#music_kit_darwin---v130)
+
+---
+
+#### `music_kit` - `v1.3.0`
+
+ - **FEAT**(music_kit): add macOS support.
+
+#### `music_kit_darwin` - `v1.3.0`
+
+ - **FEAT**(music_kit): add macOS support.
+
+
 ## 2025-01-13
 
 ### Changes
