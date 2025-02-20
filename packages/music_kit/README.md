@@ -1,12 +1,15 @@
 # Music Kit
+<?code-excerpt path-base="example/lib"?>
 
-A Flutter plugin to access and play Apple Music.
+[![pub package](https://img.shields.io/pub/v/music_kit.svg)](https://pub.dev/packages/music_kit)
 
-## Platform Support
+A Flutter plugin to access and play Apple Music. Supports Android, iOS and macOS.
+Not all methods are supported on all platforms.
 
-| Android | iOS | MacOS | Web | Linux | Windows |
-| :-----: | :-: | :---: | :-: | :---: | :-----: |
-|   ✔️    | ✔️  |   ✗   |  ✗  |   ✗   |    ✗    |
+|             | Android | iOS   | macOS |
+|-------------|---------|-------|-------|
+| **Support** | SDK 21+ | 15.0+ | 14.0+ |
+
 
 ## Usage
 
